@@ -108,8 +108,4 @@ new people that already use Horizon UI!
 
 💬 [Join the #HorizonUI Discord Community!](https://discord.gg/f6tEKFBd4m)
 
-### Copyright and license
 
-⭐️ [Copyright 2022 Simmmple ](https://www.simmmple.com/?ref=readme-horizon)
-
-📄 [Horizon UI License](https://www.simmmple.com/licenses?ref=readme-horizon)
