@@ -66,7 +66,7 @@ export default function HeaderLinks(props) {
         p='6px'
         align='center'
         me='6px'>
-        <Flex
+        {/* <Flex
           align='center'
           justify='center'
           bg={ethBox}
@@ -75,8 +75,8 @@ export default function HeaderLinks(props) {
           borderRadius='30px'
           me='7px'>
           <Icon color={ethColor} w='9px' h='14px' as={FaEthereum} />
-        </Flex>
-        <Text
+        </Flex> */}
+        {/* <Text
           w='max-content'
           color={ethColor}
           fontSize='sm'
@@ -87,19 +87,19 @@ export default function HeaderLinks(props) {
             {" "}
             ETH
           </Text>
-        </Text>
+        </Text> */}
       </Flex>
       <SidebarResponsive routes={routes} />
       <Menu>
         <MenuButton p='0px'>
-          <Icon
+          {/* <Icon
             mt='6px'
             as={MdNotificationsNone}
             color={navbarIcon}
             w='18px'
             h='18px'
             me='10px'
-          />
+          /> */}
         </MenuButton>
         <MenuList
           boxShadow={shadow}
@@ -150,14 +150,14 @@ export default function HeaderLinks(props) {
 
       <Menu>
         <MenuButton p='0px'>
-          <Icon
+          {/* <Icon
             mt='6px'
             as={MdInfoOutline}
             color={navbarIcon}
             w='18px'
             h='18px'
             me='10px'
-          />
+          /> */}
         </MenuButton>
         <MenuList
           boxShadow={shadow}
