@@ -34,6 +34,21 @@ import { fetchAllEvents } from "../../../api/eventApi";
 
 
 export default function Marketplace() {
+  const [data, setData] = useState([]);
+  const fetchEvents = async () => {
+    try {
+      const response = await fetchAllEvents();
+      console.log(response.data.data);
+      setData(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
   //const textColorBrand = useColorModeValue("brand.500", "white");
@@ -54,20 +69,23 @@ export default function Marketplace() {
 
 
   return (
-    
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
       <Grid
-        mb='20px'
+        mb="20px"
         gridTemplateColumns={{ xl: "repeat(3, 1fr)", "2xl": "1fr 0.46fr" }}
         gap={{ base: "20px", xl: "20px" }}
-        display={{ base: "block", xl: "grid" }}>
+        display={{ base: "block", xl: "grid" }}
+      >
         <Flex
-          flexDirection='column'
-          gridArea={{ xl: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
+          flexDirection="column"
+          gridArea={{ xl: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}
+        >
           <Banner />
+
           <Flex direction='column'>
             <SimpleGrid columns={{ base: 1, md: 2 }} gap='40px'>
+
               {data.map((elem) => {
                 return (
                   <NFT
@@ -85,7 +103,6 @@ export default function Marketplace() {
         </Flex>
       </Grid>
       {/* Delete Product */}
-      </Box>
-      
+    </Box>
   );
 }

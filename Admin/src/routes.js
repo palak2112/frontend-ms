@@ -20,17 +20,16 @@ import RTL from "views/admin/rtl";
 import SignInCentered from "views/auth/signIn";
 
 const routes = [
-
   {
     name: "Upcoming Events",
     layout: "/admin",
-    path: "/NFTMarketplace",
+    path: "/",
     icon: (
       <Icon
         as={MdOutlineShoppingCart}
-        width='20px'
-        height='20px'
-        color='inherit'
+        width="20px"
+        height="20px"
+        color="inherit"
       />
     ),
     component: NFTMarketplace,
@@ -39,7 +38,7 @@ const routes = [
   {
     name: "Requests",
     layout: "/admin",
-    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
     path: "/data-tables",
     component: DataTables,
   },
@@ -47,14 +46,14 @@ const routes = [
     name: "Add Event",
     layout: "/admin",
     path: "/profile",
-    icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
     component: Profile,
   },
   {
     name: "Sign In",
     layout: "/auth",
     path: "/sign-in",
-    icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
     component: SignInCentered,
   },
   // {

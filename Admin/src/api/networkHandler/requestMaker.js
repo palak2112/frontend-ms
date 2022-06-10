@@ -59,7 +59,6 @@ const requestMaker = (
         console.error("Error in API call :: ", error,pe);
         throw error;
       });
-
 };
 
 export default requestMaker;
