@@ -22,7 +22,7 @@ import SignInCentered from "views/auth/signIn";
 const routes = [
 
   {
-    name: "NFTMarketplace",
+    name: "Upcoming Events",
     layout: "/admin",
     path: "/NFTMarketplace",
     icon: (
@@ -44,7 +44,7 @@ const routes = [
     component: DataTables,
   },
   {
-    name: "Profile",
+    name: "Add Event",
     layout: "/admin",
     path: "/profile",
     icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,

@@ -45,7 +45,7 @@ function TopCreatorTable(props) {
 
   return (
     <>
-      <Flex
+      {/* <Flex
         direction='column'
         w='100%'
         overflowX={{ sm: "scroll", lg: "hidden" }}>
@@ -145,7 +145,7 @@ function TopCreatorTable(props) {
             })}
           </Tbody>
         </Table>
-      </Flex>
+      </Flex> */}
     </>
   );
 }

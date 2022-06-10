@@ -48,53 +48,53 @@ export default function UserReports() {
         gap='20px'
         mb='20px'>
         <MiniStatistics
-          startContent={
-            <IconBox
-              w='56px'
-              h='56px'
-              bg={boxBg}
-              icon={
-                <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />
-              }
-            />
-          }
-          name='Earnings'
+          // startContent={
+          //   <IconBox
+          //     w='56px'
+          //     h='56px'
+          //     bg={boxBg}
+          //     icon={
+          //       <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />
+          //     }
+          //   />
+          // }
+          name='Approved requests'
           value='$350.4'
         />
         <MiniStatistics
-          startContent={
-            <IconBox
-              w='56px'
-              h='56px'
-              bg={boxBg}
-              icon={
-                <Icon w='32px' h='32px' as={MdAttachMoney} color={brandColor} />
-              }
-            />
-          }
-          name='Spend this month'
+          // startContent={
+          //   <IconBox
+          //     w='56px'
+          //     h='56px'
+          //     bg={boxBg}
+          //     icon={
+          //       <Icon w='32px' h='32px' as={MdAttachMoney} color={brandColor} />
+          //     }
+          //   />
+          // }
+          name='Pending Upload'
           value='$642.39'
         />
-        <MiniStatistics growth='+23%' name='Sales' value='$574.34' />
+        {/* <MiniStatistics growth='+23%' name='Sales' value='$574.34' /> */}
         <MiniStatistics
-          endContent={
-            <Flex me='-16px' mt='10px'>
-              <FormLabel htmlFor='balance'>
-                <Avatar src={Usa} />
-              </FormLabel>
-              <Select
-                id='balance'
-                variant='mini'
-                mt='5px'
-                me='0px'
-                defaultValue='usd'>
-                <option value='usd'>USD</option>
-                <option value='eur'>EUR</option>
-                <option value='gba'>GBA</option>
-              </Select>
-            </Flex>
-          }
-          name='Your balance'
+          // endContent={
+          //   <Flex me='-16px' mt='10px'>
+          //     <FormLabel htmlFor='balance'>
+          //       <Avatar src={Usa} />
+          //     </FormLabel>
+          //     <Select
+          //       id='balance'
+          //       variant='mini'
+          //       mt='5px'
+          //       me='0px'
+          //       defaultValue='usd'>
+          //       <option value='usd'>USD</option>
+          //       <option value='eur'>EUR</option>
+          //       <option value='gba'>GBA</option>
+          //     </Select>
+          //   </Flex>
+          // }
+          name='Under Review'
           value='$1,000'
         />
         <MiniStatistics
