@@ -93,7 +93,7 @@ export default function NFT(props) {
                 {author}
               </Text>
             </Flex>
-            <AvatarGroup
+            {/* <AvatarGroup
               max={3}
               color={textColorBid}
               size='sm'
@@ -108,7 +108,7 @@ export default function NFT(props) {
               {bidders.map((avt, key) => (
                 <Avatar key={key} src={avt} />
               ))}
-            </AvatarGroup>
+            </AvatarGroup> */}
           </Flex>
           <Flex
             align='start'
@@ -122,7 +122,7 @@ export default function NFT(props) {
             }}
             mt='25px'>
             <Text fontWeight='700' fontSize='sm' color={textColorBid}>
-              Current Bid: {currentbid}
+              Start Date: {currentbid}
             </Text>
             <Link
               href={download}

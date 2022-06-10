@@ -30,7 +30,7 @@ export default function Banner() {
         }}
         fontWeight='700'
         lineHeight={{ base: "32px", md: "42px" }}>
-        Discover, collect, and sell extraordinary NFTs
+        Upcoming Events
       </Text>
       <Text
         fontSize='md'
@@ -46,10 +46,9 @@ export default function Banner() {
         fontWeight='500'
         mb='40px'
         lineHeight='28px'>
-        Enter in this creative world. Discover now the latest NFTs or start
-        creating your own!
+        Events related to Education, Healthcare, Lifestyle, Livelihood, Career Counselling, General Counselling and WellnessCounselling 
       </Text>
-      <Flex align='center'>
+      {/* <Flex align='center'>
         <Button
           bg='white'
           color='black'
@@ -68,7 +67,7 @@ export default function Banner() {
             Watch video
           </Text>
         </Link>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 }

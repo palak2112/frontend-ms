@@ -59,7 +59,7 @@ export default function UserReports() {
           //   />
           // }
           name='Approved requests'
-          value='$350.4'
+          value='5'
         />
         <MiniStatistics
           // startContent={
@@ -72,8 +72,8 @@ export default function UserReports() {
           //     }
           //   />
           // }
-          name='Pending Upload'
-          value='$642.39'
+          name='Pending approval'
+          value='5'
         />
         {/* <MiniStatistics growth='+23%' name='Sales' value='$574.34' /> */}
         <MiniStatistics
@@ -94,19 +94,19 @@ export default function UserReports() {
           //     </Select>
           //   </Flex>
           // }
-          name='Under Review'
-          value='$1,000'
+          name='Pending Upload'
+          value='5'
         />
         <MiniStatistics
-          startContent={
-            <IconBox
-              w='56px'
-              h='56px'
-              bg='linear-gradient(90deg, #4481EB 0%, #04BEFE 100%)'
-              icon={<Icon w='28px' h='28px' as={MdAddTask} color='white' />}
-            />
-          }
-          name='New Tasks'
+          // startContent={
+          //   <IconBox
+          //     w='56px'
+          //     h='56px'
+          //     bg='linear-gradient(90deg, #4481EB 0%, #04BEFE 100%)'
+          //     icon={<Icon w='28px' h='28px' as={MdAddTask} color='white' />}
+          //   />
+          // }
+          name='Under Review'
           value='154'
         />
         <MiniStatistics
@@ -120,7 +120,7 @@ export default function UserReports() {
               }
             />
           }
-          name='Total Projects'
+          name='Total Requests'
           value='2935'
         />
       </SimpleGrid>

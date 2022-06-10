@@ -1,7 +1,7 @@
 [
   {
     "name":"Request ID",
-    "status": "Approved",
+    "status": "Completed",
     "date": "18 Apr 2022",
     "progress": 75.5  
   },
@@ -19,7 +19,7 @@
   },
   {
     "name":"Weekly Updates",
-    "status": "Approved",
+    "status": "Completed",
     "date": "12 Jul 2021",
     "progress": 50.5  
   }

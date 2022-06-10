@@ -56,7 +56,7 @@ export default function ColumnsTable(props) {
   return (
     <Card
       direction='column'
-      w='100%'
+      w='200%'
       px='0px'
       overflowX={{ sm: "scroll", lg: "hidden" }}>
       <Flex px='25px' justify='space-between' mb='10px' align='center'>
@@ -65,7 +65,7 @@ export default function ColumnsTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Complex Table
+          All requests
         </Text>
         <Menu />
       </Flex>

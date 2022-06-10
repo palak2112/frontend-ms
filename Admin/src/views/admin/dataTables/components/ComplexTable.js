@@ -24,7 +24,7 @@ import Card from "components/card/Card";
 // import Menu from "components/menu/MainMenu";
 
 // Assets
-import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
+import { MdArticle,MdAddTask,MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
 export default function ColumnsTable(props) {
   const { columnsData, tableData } = props;
 
@@ -100,7 +100,7 @@ export default function ColumnsTable(props) {
               <Tr {...row.getRowProps()} key={index}>
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "NAME") {
+                  if (cell.column.Header === "U-ID") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}
@@ -114,21 +114,29 @@ export default function ColumnsTable(props) {
                           h='24px'
                           me='5px'
                           color={
-                            cell.value === "Approved"
+                            cell.value === "Completed"
                               ? "green.500"
-                              : cell.value === "Disable"
+                              : cell.value === "Rejected"
                               ? "red.500"
-                              : cell.value === "Error"
+                              : cell.value === "Approval Pending"
                               ? "orange.500"
+                              : cell.value === "Under Review"
+                              ? "yellow.500"
+                              : cell.value === "Pending Uploads"
+                              ? "blue.500"
                               : null
                           }
                           as={
-                            cell.value === "Approved"
+                            cell.value === "Completed"
                               ? MdCheckCircle
-                              : cell.value === "Disable"
+                              : cell.value === "Rejected"
                               ? MdCancel
-                              : cell.value === "Error"
+                              : cell.value === "Approval Pending"
                               ? MdOutlineError
+                              : cell.value === "Under Review"
+                              ? MdAddTask
+                              : cell.value === "Pending Uploads"
+                              ? MdArticle
                               : null
                           }
                         />
@@ -137,25 +145,19 @@ export default function ColumnsTable(props) {
                         </Text>
                       </Flex>
                     );
-                  } else if (cell.column.Header === "DATE") {
+                  } else if (cell.column.Header === "ENROLLMENT DATE") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "PROGRESS") {
+                  } else if (cell.column.Header === "NAME") {
                     data = (
-                      <Flex align='center'>
-                        <Progress
-                          variant='table'
-                          colorScheme='brandScheme'
-                          h='8px'
-                          w='108px'
-                          value={cell.value}
-                        />
-                      </Flex>
+                      <Text color={textColor} fontSize='sm' fontWeight='700'>
+                        {cell.value}
+                      </Text>
                     );
-                  }
+                  } 
                   return (
                     <Td
                       {...cell.getCellProps()}
