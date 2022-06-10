@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 // Chakra imports
 import {
   Box,
@@ -24,6 +24,9 @@ import illustration from "../../../logo.jpg";
 // import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
+import { adminLogin } from "api/loginApi";
+
+
 
 function SignIn() {
   // Chakra color mode
@@ -44,6 +47,32 @@ function SignIn() {
   // );
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+
+  const [uid, setUid] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
+
+  const handleSignin = async () => {
+    const payload = {
+      uid,
+      password,
+    };
+    try {
+      const response = await adminLogin(payload);
+      console.log(response);
+      // window.location.href = "/admin/";
+      // <Redirect to="/admin/" />;
+
+      history.replace("/admin/");
+    } catch (e) {
+      console.log(e);
+      // showNotification("danger", "Login Failed");
+      // Toast.error("Login Failed");
+    }
+  };
+
+
+
   return (
     <DefaultAuth illustrationBackground={illustration} image={illustration}>
       <Flex
@@ -119,11 +148,15 @@ function SignIn() {
               variant='auth'
               fontSize='sm'
               ms={{ base: "0px", md: "0px" }}
-              type='email'
+              type='text'
               placeholder='mail@simmmple.com'
               mb='24px'
               fontWeight='500'
               size='lg'
+              value={uid}
+              onChange={(e) => {
+                setUid(e.target.value);
+              }}
             />
             <FormLabel
               ms='4px'
@@ -142,6 +175,10 @@ function SignIn() {
                 size='lg'
                 type={show ? "text" : "password"}
                 variant='auth'
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
               <InputRightElement display='flex' alignItems='center' mt='4px'>
                 <Icon
@@ -185,7 +222,8 @@ function SignIn() {
               w='100%'
               h='50'
               mb='24px'
-              background="#F58220">
+              background="#F58220"
+              onClick={handleSignin}>
               Sign In
             </Button>
           </FormControl>
