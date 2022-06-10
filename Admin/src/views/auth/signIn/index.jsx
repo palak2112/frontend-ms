@@ -27,6 +27,8 @@ import { RiEyeCloseLine } from "react-icons/ri";
 import { useEffect } from "react";
 import { adminLogin } from "../../../api/loginApi";
 import { Redirect, useHistory } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 
 function SignIn() {
   // Chakra color mode
@@ -62,12 +64,12 @@ function SignIn() {
       console.log(response);
       // window.location.href = "/admin/";
       // <Redirect to="/admin/" />;
-
+      toast.success("Login Successfull");
       history.replace("/admin/");
     } catch (e) {
       console.log(e);
       // showNotification("danger", "Login Failed");
-      // Toast.error("Login Failed");
+      toast.error("Login Failed");
     }
   };
 

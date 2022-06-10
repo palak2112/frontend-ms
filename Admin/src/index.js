@@ -7,8 +7,12 @@ import AdminLayout from "layouts/admin";
 import RTLLayout from "layouts/rtl";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
+  <div>
+    <ToastContainer/>
   <ChakraProvider theme={theme}>
     <React.StrictMode>
       <HashRouter>
@@ -20,6 +24,7 @@ ReactDOM.render(
         </Switch>
       </HashRouter>
     </React.StrictMode>
-  </ChakraProvider>,
+  </ChakraProvider>
+  </div>,
   document.getElementById("root")
 );
