@@ -1,29 +1,29 @@
 [{
-  "request_id":["Horizon UI PRO",false],
+  "name":["Request ID",false],
   "quantity": 2458, 
   "date": "12 Jan 2021",
   "progress": 17.5  
 },
 {
-  "request_id":["Horizon UI Free",true],
+  "name":["Request ID",true],
   "quantity": 1485, 
   "date": "21 Feb 2021",
   "progress": 10.8  
 },
 {
-  "request_id":["Weekly Update",true],
+  "name":["Weekly Update",true],
   "quantity": 1024, 
   "date": "13 Mar 2021",
   "progress": 21.3  
 },
 {
-  "request_id":["Venus 3D Asset",true],
+  "name":["Venus 3D Asset",true],
   "quantity": 858, 
   "date": "24 Jan 2021",
   "progress": 31.5  
 },
 {
-  "request_id":["Marketplace",false],
+  "name":["Request ID",false],
   "quantity": 258, 
   "date": "24 Oct 2022",
   "progress": 12.2  

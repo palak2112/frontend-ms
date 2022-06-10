@@ -1,24 +1,24 @@
 [
   {
-    "request_id":"Horizon UI PRO",
+    "name":"Request ID",
     "status": "Approved",
     "date": "18 Apr 2022",
     "progress": 75.5  
   },
   {
-    "request_id":"Horizon UI Free",
+    "name":"Request ID",
     "status": "Disable",
     "date": "18 Apr 2022",
     "progress": 25.5  
   },
   {
-    "request_id":"Marketplace",
+    "name":"Request ID",
     "status": "Error",
     "date": "20 May 2021",
     "progress": 90  
   },
   {
-    "request_id":"Weekly Updates",
+    "name":"Weekly Updates",
     "status": "Approved",
     "date": "12 Jul 2021",
     "progress": 50.5  
