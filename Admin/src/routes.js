@@ -14,6 +14,7 @@ import MainDashboard from "views/admin/default";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import Profile1 from "views/admin/profile1";
+import Profile2 from "views/admin/profile2";
 import DataTables from "views/admin/dataTables";
 import RTL from "views/admin/rtl";
 
@@ -25,17 +26,10 @@ const routes = [
   {
     name: "Upcoming Events",
     layout: "/admin",
+    icon: <Icon as={MdOutlineShoppingCart} width='20px' height='20px' color='inherit'/>,
     path: "/NFTMarketplace",
-    icon: (
-      <Icon
-        as={MdOutlineShoppingCart}
-        width='20px'
-        height='20px'
-        color='inherit'
-      />
-    ),
     component: NFTMarketplace,
-    secondary: true,
+    
   },
   {
     name: "Requests",
@@ -44,12 +38,20 @@ const routes = [
     path: "/data-tables",
     component: DataTables,
   },
+
   {
     name: "Request Details",
     layout: "/admin",
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     path: "/details",
     component: Profile1,
+  },
+  {
+    name: "Event Details",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    path: "/eventdetails",
+    component: Profile2,
   },
   {
     name: "Add Event",
