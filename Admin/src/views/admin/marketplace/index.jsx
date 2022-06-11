@@ -31,7 +31,7 @@ import { tableColumnsTopCreators } from "views/admin/marketplace/variables/table
 import { useState } from "react";
 import { useEffect } from "react";
 import { fetchAllEvents } from "../../../api/eventApi";
-
+import moment from "moment";
 
 export default function Marketplace() {
   // Chakra Color Mode
@@ -52,22 +52,22 @@ export default function Marketplace() {
     fetchEvents();
   }, []);
 
-
   return (
-    
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
       <Grid
-        mb='20px'
+        mb="20px"
         gridTemplateColumns={{ xl: "repeat(3, 1fr)", "2xl": "1fr 0.46fr" }}
         gap={{ base: "20px", xl: "20px" }}
-        display={{ base: "block", xl: "grid" }}>
+        display={{ base: "block", xl: "grid" }}
+      >
         <Flex
-          flexDirection='column'
-          gridArea={{ xl: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
+          flexDirection="column"
+          gridArea={{ xl: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}
+        >
           <Banner />
-          <Flex direction='column'>
-            <SimpleGrid columns={{ base: 1, md: 2 }} gap='40px'>
+          <Flex direction="column">
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap="40px">
               {data.map((elem) => {
                 return (
                   <NFT
@@ -75,8 +75,10 @@ export default function Marketplace() {
                     author={elem.description}
                     bidders={[]}
                     image={elem.posterUrl}
-                    currentbid={elem.startDate}
+                    currentbid={moment(new Date(elem.startDate)).format("LL")}
                     download="#"
+                    location={elem.location}
+                    theme={elem.theme}
                   />
                 );
               })}
@@ -85,7 +87,6 @@ export default function Marketplace() {
         </Flex>
       </Grid>
       {/* Delete Product */}
-      </Box>
-      
+    </Box>
   );
 }
