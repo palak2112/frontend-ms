@@ -6,7 +6,10 @@ import {
   MdPerson,
   MdHome,
   MdLock,
+  MdAssignment,
+  MdNoteAdd,
   MdOutlineShoppingCart,
+  MdAccountBalance
 } from "react-icons/md";
 
 // Admin Imports
@@ -24,17 +27,9 @@ import SignInCentered from "views/auth/signIn";
 const routes = [
 
   {
-    name: "Upcoming Events",
-    layout: "/admin",
-    icon: <Icon as={MdOutlineShoppingCart} width='20px' height='20px' color='inherit'/>,
-    path: "/NFTMarketplace",
-    component: NFTMarketplace,
-    
-  },
-  {
     name: "Requests",
     layout: "/admin",
-    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdAssignment} width='20px' height='20px' color='inherit' />,
     path: "/data-tables",
     component: DataTables,
   },
@@ -46,6 +41,24 @@ const routes = [
     path: "/details",
     component: Profile1,
   },
+
+  {
+    name: "Add Event",
+    layout: "/admin",
+    path: "/profile",
+    icon: <Icon as={MdNoteAdd} width='20px' height='20px' color='inherit' />,
+    component: Profile,
+  },
+
+  {
+    name: "Upcoming Events",
+    layout: "/admin",
+    icon: <Icon as={MdAccountBalance} width='20px' height='20px' color='inherit'/>,
+    path: "/NFTMarketplace",
+    component: NFTMarketplace,
+    
+  },
+
   {
     name: "Event Details",
     layout: "/admin",
@@ -53,13 +66,7 @@ const routes = [
     path: "/eventdetails",
     component: Profile2,
   },
-  {
-    name: "Add Event",
-    layout: "/admin",
-    path: "/profile",
-    icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
-    component: Profile,
-  },
+
   {
     name: "Sign In",
     layout: "/auth",

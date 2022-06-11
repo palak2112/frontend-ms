@@ -1,7 +1,7 @@
 // Chakra imports
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
-import { Stack } from "@chakra-ui/react";
+import { Stack, HStack  } from "@chakra-ui/react";
 // import DevelopmentTable from "views/admin/dataTables/components/DevelopmentTable";
 // import CheckTable from "views/admin/dataTables/components/CheckTable";
 // import ColumnsTable from "views/admin/dataTables/components/ColumnsTable";
@@ -59,7 +59,7 @@ export default function Settings() {
   // Chakra Color Mode
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-      <Stack spacing={3}>
+      <HStack spacing={3}>
         <Select placeholder="Aid Type" bg="white">
           <option value="option1">Financial</option>
           <option value="option2">Non-Financial</option>
@@ -83,7 +83,7 @@ export default function Settings() {
           <option value="option7">Counselling</option>
           <option value="option8">Livelihood</option>
         </Select>
-      </Stack>
+      </HStack>
       <Box>
         <br></br>
       </Box>
