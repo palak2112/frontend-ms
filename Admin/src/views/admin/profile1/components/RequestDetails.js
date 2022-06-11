@@ -19,6 +19,7 @@ import Project from "views/admin/profile/components/Project";
 import { Heading } from "@chakra-ui/react";
 
 export default function RequestDetails(props) {
+  const { data } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -80,7 +81,7 @@ export default function RequestDetails(props) {
           >
             Name :
             <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              Sarah Shah
+              {data?.name}
             </Text>
           </Text>
           <Text
@@ -93,7 +94,7 @@ export default function RequestDetails(props) {
           >
             U - ID :
             <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              12345
+              {data?.uid}
             </Text>
           </Text>
           <Text
@@ -105,7 +106,7 @@ export default function RequestDetails(props) {
           >
             Email :
             <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              sara@gmail.com
+              {data?.uid}
             </Text>
           </Text>
           <Text
@@ -118,7 +119,12 @@ export default function RequestDetails(props) {
           >
             Address :
             <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              300, Lorem ipsum dolor sit amet, consectetur
+              {data?.address &&
+                Object.keys(data?.address)
+                  .map(function (key) {
+                    return data.address[key];
+                  })
+                  .join(", ")}
             </Text>
           </Text>
           <Text
@@ -130,7 +136,7 @@ export default function RequestDetails(props) {
           >
             Year of Enrollment :
             <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              2005
+              {data?.yearOfEnrolment}
             </Text>
           </Text>
           <Text
@@ -143,7 +149,7 @@ export default function RequestDetails(props) {
           >
             Phone no. :
             <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              1234567899
+              {data?.phoneNumber}
             </Text>
           </Text>
           <Text
@@ -155,19 +161,7 @@ export default function RequestDetails(props) {
           >
             Previous Donations :
             <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              Lorem ipsum dolor sit amet, consectetur
-            </Text>
-          </Text>
-          <Text
-            color={textColorPrimary}
-            fontWeight="bold"
-            fontSize="md"
-            // mt='10px'
-            // mb='4px'
-          >
-            Status :
-            <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
-              Pending
+              {"₹ " + data?.donationReceived}
             </Text>
           </Text>
         </SimpleGrid>

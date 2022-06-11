@@ -14,68 +14,50 @@ import {
   Td,
   TableCaption,
   TableContainer,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
+
+import moment from "moment";
 
 export default function Notifications(props) {
-  const { ...rest } = props;
+  const { data, ...rest } = props;
+  console.log({ data });
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   return (
-    <Card mb='20px' {...rest}>
-
-      
-  <TableContainer>
-  <Table variant='simple'>
-    
-    <Thead>
-      <Tr>
-        <Th>Document Name</Th>
-        <Th>Status</Th>
-        <Th>Upload Date</Th>
-        <Th>Document Link</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-    </Tbody>
-    
-  </Table>
-</TableContainer>
+    <Card mb="20px" {...rest}>
+      <TableContainer>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Document Name</Th>
+              <Th>Status</Th>
+              <Th>Upload Date</Th>
+              <Th>Document Link</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data?.data?.data &&
+              Object.keys(data?.data?.data).map((key, idx) => {
+                return (
+                  <Tr key={idx}>
+                    <Td>{key}</Td>
+                    <Td>Uploaded</Td>
+                    <Td>
+                      {" "}
+                      {moment(new Date(data?.data?.updatedAt)).format("L")}{" "}
+                    </Td>
+                    <Td>
+                      {" "}
+                      <a href={data?.data?.data[key]} target="__blank">
+                        Link
+                      </a>{" "}
+                    </Td>
+                  </Tr>
+                );
+              })}
+          </Tbody>
+        </Table>
+      </TableContainer>
       {/* <Flex align='center' w='100%' justify='space-between' mb='30px'>
         <Text
           color={textColorPrimary}

@@ -12,6 +12,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import {
   useGlobalFilter,
   usePagination,
@@ -33,7 +34,8 @@ import {
 } from "react-icons/md";
 
 export default function ColumnsTable(props) {
-  const { columnsData, tableData, toggleRequestDetailCB } = props;
+  const history = useHistory();
+  const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -119,9 +121,7 @@ export default function ColumnsTable(props) {
                 _hover={{
                   cursor: "pointer",
                 }}
-                onClick={() =>
-                  toggleRequestDetailCB({ show: true, reqId: row.values.rid })
-                }
+                onClick={() => history.push(`/admin/details/${row.values.rid}`)}
               >
                 {row.cells.map((cell, index) => {
                   let data = "";
