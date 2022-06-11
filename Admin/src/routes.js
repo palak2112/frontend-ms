@@ -64,16 +64,6 @@ const routes = [
   },
 
   {
-    name: "Upcoming Events",
-    layout: "/admin",
-    icon: (
-      <Icon as={MdAccountBalance} width="20px" height="20px" color="inherit" />
-    ),
-    path: "/NFTMarketplace",
-    component: NFTMarketplace,
-  },
-
-  {
     name: "Event Details",
     layout: "/admin",
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
