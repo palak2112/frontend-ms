@@ -1,7 +1,7 @@
 // Chakra imports
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
-import { Stack, HStack  } from "@chakra-ui/react";
+import { Stack, HStack } from "@chakra-ui/react";
 // import DevelopmentTable from "views/admin/dataTables/components/DevelopmentTable";
 // import CheckTable from "views/admin/dataTables/components/CheckTable";
 // import ColumnsTable from "views/admin/dataTables/components/ColumnsTable";
@@ -22,6 +22,8 @@ import { useState, useEffect } from "react";
 
 import { fetchAllRequests } from "../../../api/requestApi";
 
+import Overview from "../profile1";
+
 const statusMapping = {
   APPROVAL_PENDING: "Approval Pending",
   PENDING_UPLOADS: "Pending Uploads",
@@ -32,13 +34,17 @@ const statusMapping = {
 
 export default function Settings() {
   const [apiData, setApiData] = useState([]);
+  const [showDetail, setShowDetail] = useState({ show: false, reqId: -1 });
+
   const fetchRequests = async () => {
     try {
       const response = await fetchAllRequests();
       console.log(response.data.data);
       setApiData(
         response.data.data.map((elem) => {
+          console.log(elem);
           return {
+            rid: elem.id,
             uid: elem.user.uid,
             name: elem.user.name,
             status: statusMapping[elem.status],
@@ -56,8 +62,14 @@ export default function Settings() {
     fetchRequests();
     console.log(apiData);
   }, []);
+
+  const toggleRequestDetail = (reqId) => {
+    if (reqId === -1) setShowDetail({ show: false, reqId: -1 });
+    else setShowDetail({ show: true, reqId });
+  };
+
   // Chakra Color Mode
-  return (
+  return showDetail.show === false ? (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       <HStack spacing={3}>
         <Select placeholder="Aid Type" bg="white">
@@ -102,8 +114,14 @@ export default function Settings() {
           columnsData={columnsDataColumns}
           tableData={tableDataColumns}
         /> */}
-        <ComplexTable columnsData={columnsDataComplex} tableData={apiData} />
+        <ComplexTable
+          columnsData={columnsDataComplex}
+          tableData={apiData}
+          toggleRequestDetailCB={toggleRequestDetail}
+        />
       </SimpleGrid>
     </Box>
+  ) : (
+    <Overview reqId={showDetail.reqId} />
   );
 }

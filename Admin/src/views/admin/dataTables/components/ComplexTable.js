@@ -33,7 +33,7 @@ import {
 } from "react-icons/md";
 
 export default function ColumnsTable(props) {
-  const { columnsData, tableData } = props;
+  const { columnsData, tableData, toggleRequestDetailCB } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -113,10 +113,25 @@ export default function ColumnsTable(props) {
           {page.map((row, index) => {
             prepareRow(row);
             return (
-              <Tr {...row.getRowProps()} key={index}>
+              <Tr
+                {...row.getRowProps()}
+                key={index}
+                _hover={{
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  toggleRequestDetailCB({ show: true, reqId: row.values.rid })
+                }
+              >
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "U-ID") {
+                  if (cell.column.Header === "REQ-ID") {
+                    data = (
+                      <Text color={textColor} fontSize="sm" fontWeight="700">
+                        {cell.value}
+                      </Text>
+                    );
+                  } else if (cell.column.Header === "U-ID") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
                         {cell.value}

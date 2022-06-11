@@ -57,6 +57,10 @@ export const columnsDataColumns = [
 
 export const columnsDataComplex = [
   {
+    Header: "REQ-ID",
+    accessor: "rid",
+  },
+  {
     Header: "U-ID",
     accessor: "uid",
   },
