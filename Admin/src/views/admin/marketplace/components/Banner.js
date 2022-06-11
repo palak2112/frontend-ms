@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 // Chakra imports
 import { Button, Flex, Link, Text } from "@chakra-ui/react";
 
@@ -8,6 +8,12 @@ import { Button, Flex, Link, Text } from "@chakra-ui/react";
 
 export default function Banner() {
   // Chakra Color Mode
+  const history = useHistory();
+
+  const redirectTo = () =>{
+    history.replace("/admin/profile");
+  }
+
   return (
     // <Flex
     //   direction='column'
@@ -71,7 +77,7 @@ export default function Banner() {
     //   </Flex>
     // </Flex>
     <Flex justify="flex-end">
-      <Button colorScheme="blue" variant="outline" size="lg" mx="8" my="4">
+      <Button colorScheme="blue" variant="outline" size="lg" mx="8" my="4" onClick={redirectTo}>
         Add Event
       </Button>
     </Flex>

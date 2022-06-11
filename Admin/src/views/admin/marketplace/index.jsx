@@ -33,6 +33,16 @@ import { useEffect } from "react";
 import { fetchAllEvents } from "../../../api/eventApi";
 import moment from "moment";
 
+const themeMapping = {
+  EDUCATION:"Education",
+  HEALTHCARE:"Healthcare",
+  LIFESTYLE:"Lifesytle",
+  LIVELIHOOD:"Livelihood",
+  CAREER_COUNSELLING:"Career Counselling",
+  GENERAL_COUNSELLING:"General Counselling",
+  WELLNESS_COUNSELLING:"Wellness Counselling"
+}
+
 export default function Marketplace() {
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -78,7 +88,7 @@ export default function Marketplace() {
                   currentbid={moment(new Date(elem.startDate)).format("LL")}
                   download="#"
                   location={elem.location}
-                  theme={elem.theme}
+                  theme={themeMapping[elem.theme]}
                 />
               );
             })}
