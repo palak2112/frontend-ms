@@ -33,17 +33,20 @@ import { useEffect } from "react";
 import { fetchAllEvents } from "../../../api/eventApi";
 import moment from "moment";
 
+import { useHistory } from "react-router-dom";
+
 const themeMapping = {
-  EDUCATION:"Education",
-  HEALTHCARE:"Healthcare",
-  LIFESTYLE:"Lifesytle",
-  LIVELIHOOD:"Livelihood",
-  CAREER_COUNSELLING:"Career Counselling",
-  GENERAL_COUNSELLING:"General Counselling",
-  WELLNESS_COUNSELLING:"Wellness Counselling"
-}
+  EDUCATION: "Education",
+  HEALTHCARE: "Healthcare",
+  LIFESTYLE: "Lifesytle",
+  LIVELIHOOD: "Livelihood",
+  CAREER_COUNSELLING: "Career Counselling",
+  GENERAL_COUNSELLING: "General Counselling",
+  WELLNESS_COUNSELLING: "Wellness Counselling",
+};
 
 export default function Marketplace() {
+  const history = useHistory();
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
   //const textColorBrand = useColorModeValue("brand.500", "white");
@@ -80,16 +83,20 @@ export default function Marketplace() {
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap="40px">
             {data.map((elem) => {
               return (
-                <NFT
-                  name={elem.name}
-                  author={elem.description}
-                  bidders={[]}
-                  image={elem.posterUrl}
-                  currentbid={moment(new Date(elem.startDate)).format("LL")}
-                  download="#"
-                  location={elem.location}
-                  theme={themeMapping[elem.theme]}
-                />
+                <button
+                  onClick={() => history.push(`/admin/eventdetails/${elem.id}`)}
+                >
+                  <NFT
+                    name={elem.name}
+                    author={elem.description}
+                    bidders={[]}
+                    image={elem.posterUrl}
+                    currentbid={moment(new Date(elem.startDate)).format("LL")}
+                    download="#"
+                    location={elem.location}
+                    theme={themeMapping[elem.theme]}
+                  />
+                </button>
               );
             })}
           </SimpleGrid>

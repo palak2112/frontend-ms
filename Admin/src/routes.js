@@ -69,8 +69,10 @@ const routes = [
     name: "Event Details",
     layout: "/admin",
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
-    path: "/eventdetails",
+    path: "/eventdetails/:eid",
     component: Profile2,
+    children: <Profile2 />,
+    sidebarIgnore: true,
   },
   {
     name: "Sign In",

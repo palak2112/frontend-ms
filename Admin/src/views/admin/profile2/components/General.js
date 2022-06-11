@@ -9,10 +9,13 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 // Assets
+
+import moment from "moment";
 export default function GeneralInformation(props) {
-  const { ...rest } = props;
+  const { data, ...rest } = props;
+  // console.log("hey", data);
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -23,16 +26,17 @@ export default function GeneralInformation(props) {
   return (
     <Card mb={{ base: "0px", "2xl": "20px" }} {...rest}>
       <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='2xl'
-      mt='10px'
-      mb='4px'>
-      Event Details
-    </Text>
-    
-    <SimpleGrid >
-      {/* <Information
+        color={textColorPrimary}
+        fontWeight="bold"
+        fontSize="2xl"
+        mt="10px"
+        mb="4px"
+      >
+        Event Details
+      </Text>
+
+      <SimpleGrid>
+        {/* <Information
         boxShadow={cardShadow}
         title='Education'
         value='Stanford University'
@@ -63,81 +67,91 @@ export default function GeneralInformation(props) {
         value='20 July 1986'
       /> */}
 
-     <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      >
-      Name : 
-      <Text color={textColorSecondary} fontSize='md' me='10px' mb='20px'>
-      Rise Beyond , A book donation drive !
-    </Text>
-    </Text>
-    <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      
-      // mt='10px'
-      // mb='4px'
-      >
-      Theme :
-      <Text color={textColorSecondary} fontSize='md' me='10px' mb='20px' >
-     Education
-    </Text>
-    </Text>
-    <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      
-      // mt='10px'
-      // mb='4px'
-      >
-      Date :
-      <Text color={textColorSecondary} fontSize='md' me='10px' mb='20px' >
-      12/02/2001
-    </Text>
-    </Text>
-    <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      
-      // mt='10px'
-      // mb='4px'
-      >
-      Time :
-      <Text color={textColorSecondary} fontSize='md' me='10px' mb='20px' >
-      9:00 - 12:00 PM
-    </Text>
-    </Text>
-    <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      // mt='10px'
-      // mb='4px'
-      >
-      Agenda :
-      <Text color={textColorSecondary} fontSize='md' me='10px' mb='20px' >
-      Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit 
-    </Text>
-    </Text>
+        <Text color={textColorPrimary} fontWeight="bold" fontSize="md">
+          Name :
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            {data?.data?.name}
+          </Text>
+        </Text>
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
 
-    
-    <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      // mt='10px'
-      // mb='4px'
-      >
-      Description :
-      <Text color={textColorSecondary} fontSize='md' >
-      Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit 
-    </Text>
-    </Text>
+          // mt='10px'
+          // mb='4px'
+        >
+          Theme :
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            {data?.data?.theme}
+          </Text>
+        </Text>
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+
+          // mt='10px'
+          // mb='4px'
+        >
+          Start Date :
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            {data?.data?.createdAt &&
+              moment(new Date(data?.data?.createdAt)).format("LLL")}
+          </Text>
+        </Text>
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+
+          // mt='10px'
+          // mb='4px'
+        >
+          End Date :
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            {data?.data?.updatedAt &&
+              moment(new Date(data?.data?.updatedAt)).format("LLL")}
+          </Text>
+        </Text>
+        {/* <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+
+          // mt='10px'
+          // mb='4px'
+        >
+          Time :
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            9:00 - 12:00 PM
+          </Text>
+        </Text> */}
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+          // mt='10px'
+          // mb='4px'
+        >
+          Agenda :
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            {data?.data?.agenda}
+          </Text>
+        </Text>
+
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+          // mt='10px'
+          // mb='4px'
+        >
+          Description :
+          <Text color={textColorSecondary} fontSize="md">
+            {data?.data?.description}
+          </Text>
+        </Text>
       </SimpleGrid>
     </Card>
   );
