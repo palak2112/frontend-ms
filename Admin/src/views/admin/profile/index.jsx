@@ -1,6 +1,6 @@
 
 // Chakra imports
-import { Box, Grid } from "@chakra-ui/react";
+import { Box, Grid,Center,Button } from "@chakra-ui/react";
 
 // Custom components
 import Banner from "views/admin/profile/components/Banner";
@@ -13,47 +13,71 @@ import Upload from "views/admin/profile/components/Upload";
 // Assets
 import banner from "assets/img/auth/banner.png";
 import avatar from "assets/img/avatars/avatar4.png";
-import React from "react";
+import { useHistory } from "react-router-dom";
+import {React,useState} from "react";
+import {documentsUpload} from "../../../api/uploadApi"
+import {createEvent} from "../../../api/eventApi"
+import {toast} from "react-toastify"
+
+
 
 export default function Overview() {
+
+  const [uploadFile,setUploadFile] = useState("");
+  const [eventName,setEventName] = useState("");
+  const [theme,setTheme] = useState("");
+  const [agenda,setAgenda] = useState("");
+  const [location,setLocation] = useState("");
+  const [description,setDescription] = useState("");
+  const [startDateTime,setStartDateTime] = useState("");
+  const [endDateTime,setEndDateTime] = useState("");
+  
+  const history = useHistory();
+
+  const handleSubmit = async() =>{
+    console.log("In add event");
+   
+    var data = new FormData();
+    data.append('file', uploadFile,uploadFile.name);
+    
+    try{
+      const res = await documentsUpload(data);
+      console.log(res.data);
+      if(res.status === 200)
+      {
+        const payload = {
+          name : eventName,
+          agenda,
+          description,
+          posterUrl : res.data.data,
+          startDate : startDateTime + ":00.000Z",
+          endDate : startDateTime + ":00.000Z",
+          theme,
+          location,
+        }
+        try {
+          const res = await createEvent(payload);
+          console.log(res);
+          if(res.status === 200)
+          {
+            toast.success("Event added successfully");
+            history.replace("/admin/NFTMarketplace");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    catch(error){
+      console.log("Error in addding event",error);
+      toast.error("Error adding event... Try again");
+    }
+
+  }
+
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
-      <Grid
-        templateColumns={{
-          base: "1fr",
-          lg: "1.34fr 1fr 1.62fr",
-        }}
-        templateRows={{
-          base: "repeat(3, 1fr)",
-          lg: "1fr",
-        }}
-        gap={{ base: "20px", xl: "20px" }}>
-        <Banner
-          gridArea='1 / 1 / 2 / 2'
-          banner={banner}
-          avatar={avatar}
-          name='Adela Parkson'
-          job='Product Designer'
-          posts='17'
-          followers='9.7k'
-          following='274'
-        />
-        <Storage
-          gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
-          used={25.6}
-          total={50}
-        />
-        <Upload
-          gridArea={{
-            base: "3 / 1 / 4 / 2",
-            lg: "1 / 3 / 2 / 4",
-          }}
-          minH={{ base: "auto", lg: "420px", "2xl": "365px" }}
-          pe='20px'
-          pb={{ base: "100px", lg: "20px" }}
-        />
-      </Grid>
       <Grid
         mb='20px'
         templateColumns={{
@@ -76,11 +100,28 @@ export default function Overview() {
           posts='17'
           followers='9.7k'
           following='274'
+          uploadFile = {uploadFile}
+          setUploadFile = {setUploadFile}
         />
         <General
           gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
           minH='365px'
           pe='20px'
+          uploadFile = {uploadFile}
+          eventName = {eventName}
+          setEventName = {setEventName}
+          theme = {theme}
+          setTheme = {setTheme}
+          agenda = {agenda}
+          setAgenda = {setAgenda}
+          location = {location}
+          setLocation = {setLocation}
+          description = {description}
+          setDescription = {setDescription}
+          startDateTime = {startDateTime}
+          setStartDateTime = {setStartDateTime}
+          endDateTime = {endDateTime}
+          setEndDateTime = {setEndDateTime}
         />
         {/* <Notifications
           used={25.6}
@@ -91,7 +132,22 @@ export default function Overview() {
             "2xl": "1 / 3 / 2 / 4",
           }}
         /> */}
+        
+           <Button
+              fontSize='sm'
+              variant='brand'
+              fontWeight='500'
+              w='25%'
+              background="#F58220"
+              onClick={handleSubmit}
+              >
+              Submit
+            </Button>
+           
       </Grid>
+      
+
+  
     </Box>
   );
 }
