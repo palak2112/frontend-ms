@@ -32,7 +32,7 @@ export default function NFT(props) {
             h={{ base: "100%", "3xl": "100%" }}
             borderRadius='20px'
           />
-          <Button
+          {/* <Button
             position='absolute'
             bg='white'
             _hover={{ bg: "whiteAlpha.900" }}
@@ -54,7 +54,7 @@ export default function NFT(props) {
               as={like ? IoHeart : IoHeartOutline}
               color='brand.500'
             />
-          </Button>
+          </Button> */}
         </Box>
         <Flex flexDirection='column' justify='space-between' h='100%'>
           <Flex
@@ -141,7 +141,7 @@ export default function NFT(props) {
                 borderRadius='70px'
                 px='24px'
                 py='5px'>
-                Place Bid
+                Event details
               </Button>
             </Link>
           </Flex>
