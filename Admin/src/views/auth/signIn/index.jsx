@@ -25,7 +25,7 @@ import illustration from "../../../logo.jpg";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { adminLogin } from "api/loginApi";
-
+import { toast } from 'react-toastify';
 
 
 function SignIn() {
@@ -62,12 +62,12 @@ function SignIn() {
       console.log(response);
       // window.location.href = "/admin/";
       // <Redirect to="/admin/" />;
-
+      toast.success("Login Successful");
       history.replace("/admin/");
     } catch (e) {
       console.log(e);
       // showNotification("danger", "Login Failed");
-      // Toast.error("Login Failed");
+      toast.error("Login Failed");
     }
   };
 
