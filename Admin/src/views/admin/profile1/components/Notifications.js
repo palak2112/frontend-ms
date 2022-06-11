@@ -1,6 +1,7 @@
 // Chakra imports
 import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
+import { useTranslation } from "react-i18next";
 // Custom components
 import SwitchField from "components/fields/SwitchField";
 import Menu from "components/menu/MainMenu";
@@ -14,68 +15,66 @@ import {
   Td,
   TableCaption,
   TableContainer,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 
 export default function Notifications(props) {
   const { ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  return (
-    <Card mb='20px' {...rest}>
+  const { t } = useTranslation();
 
-      
-  <TableContainer>
-  <Table variant='simple'>
-    
-    <Thead>
-      <Tr>
-        <Th>Document Name</Th>
-        <Th>Status</Th>
-        <Th>Upload Date</Th>
-        <Th>Document Link</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-      <Tr>
-      <Td>Adhar Card</Td>
-        <Td>Uploaded</Td>
-        <Td> 25/12/2022 </Td>
-        <Td> Link</Td>
-      </Tr>
-    </Tbody>
-    
-  </Table>
-</TableContainer>
+  return (
+    <Card mb="20px" {...rest}>
+      <TableContainer>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>{t("welcome")}</Th>
+              <Th>Status</Th>
+              <Th>Upload Date</Th>
+              <Th>Document Link</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Tr>
+              <Td>Adhar Card</Td>
+              <Td>Uploaded</Td>
+              <Td> 25/12/2022 </Td>
+              <Td> Link</Td>
+            </Tr>
+            <Tr>
+              <Td>Adhar Card</Td>
+              <Td>Uploaded</Td>
+              <Td> 25/12/2022 </Td>
+              <Td> Link</Td>
+            </Tr>
+            <Tr>
+              <Td>Adhar Card</Td>
+              <Td>Uploaded</Td>
+              <Td> 25/12/2022 </Td>
+              <Td> Link</Td>
+            </Tr>
+            <Tr>
+              <Td>Adhar Card</Td>
+              <Td>Uploaded</Td>
+              <Td> 25/12/2022 </Td>
+              <Td> Link</Td>
+            </Tr>
+            <Tr>
+              <Td>Adhar Card</Td>
+              <Td>Uploaded</Td>
+              <Td> 25/12/2022 </Td>
+              <Td> Link</Td>
+            </Tr>
+            <Tr>
+              <Td>Adhar Card</Td>
+              <Td>Uploaded</Td>
+              <Td> 25/12/2022 </Td>
+              <Td> Link</Td>
+            </Tr>
+          </Tbody>
+        </Table>
+      </TableContainer>
       {/* <Flex align='center' w='100%' justify='space-between' mb='30px'>
         <Text
           color={textColorPrimary}

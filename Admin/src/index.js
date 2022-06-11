@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Suspense} from "react";
 import ReactDOM from "react-dom";
 import "assets/css/App.css";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -9,12 +9,13 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "theme/theme";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import './i18n.js';
 ReactDOM.render(
   <div>
   <ToastContainer />
   <ChakraProvider theme={theme}>
-    <React.StrictMode>
+      <React.StrictMode>
+        <Suspense fallback="Loading...">
       <HashRouter>
         <Switch>
           <Route path={`/auth`} component={AuthLayout} />
@@ -22,7 +23,8 @@ ReactDOM.render(
           <Route path={`/rtl`} component={RTLLayout} />
           <Redirect from='/' to='/admin' />
         </Switch>
-      </HashRouter>
+          </HashRouter>
+          </Suspense>
     </React.StrictMode>
   </ChakraProvider>
   </div>,
