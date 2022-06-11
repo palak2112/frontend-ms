@@ -108,7 +108,7 @@ export default function Marketplace() {
                 ]}
                 image={Nft1}
                 currentbid='1st March 2022'
-                download='#'
+                download="/#/admin/profile"
               />
               <NFT
                 name='Event 2'

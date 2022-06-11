@@ -15,6 +15,7 @@ import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
 import request from "views/admin/request";
+import request2 from "views/admin/request2";
 // import RTL from "views/admin/rtl";
 
 // Auth Imports
@@ -33,8 +34,8 @@ const routes = [
     layout: "/admin",
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     // path: "/data-tables",
-    path: "/request",
-    component: request,
+    path: "/request2",
+    component: request2,
   },
   {
     name: "Recent requests",
