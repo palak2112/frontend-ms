@@ -58,7 +58,7 @@ export default function HeaderLinks(props) {
         me='10px'
         borderRadius='30px'
       />
-      <Flex
+      {/* <Flex
         bg={ethBg}
         display={secondary ? "flex" : "none"}
         borderRadius='30px'
@@ -88,7 +88,7 @@ export default function HeaderLinks(props) {
             ETH
           </Text>
         </Text>
-      </Flex>
+      </Flex> */}
       <SidebarResponsive routes={routes} />
       <Menu>
         <MenuButton p='0px'>
