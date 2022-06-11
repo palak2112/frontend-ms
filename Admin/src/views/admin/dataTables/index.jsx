@@ -65,7 +65,7 @@ export default function Settings() {
   // Chakra Color Mode
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-      <HStack spacing={3}>
+      {/* <HStack spacing={3}>
         <Select placeholder="Aid Type" bg="white">
           <option value="option1">Financial</option>
           <option value="option2">Non-Financial</option>
@@ -89,7 +89,7 @@ export default function Settings() {
           <option value="option7">Counselling</option>
           <option value="option8">Livelihood</option>
         </Select>
-      </HStack>
+      </HStack> */}
       <Box>
         <br></br>
       </Box>
