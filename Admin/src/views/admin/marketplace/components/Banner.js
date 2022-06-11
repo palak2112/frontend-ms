@@ -70,11 +70,10 @@ export default function Banner() {
     //     </Link>
     //   </Flex>
     // </Flex>
-
-    <div>
-        <Button colorScheme='blue' variant='solid' size="lg" m="10" >
-      ADD NEW EVENTS
-  </Button>
-    </div>
+    <Flex justify="flex-end">
+      <Button colorScheme="blue" variant="outline" size="lg" mx="8" my="4">
+        Add Event
+      </Button>
+    </Flex>
   );
 }
