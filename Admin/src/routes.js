@@ -13,6 +13,7 @@ import {
 import MainDashboard from "views/admin/default";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
+import Profile1 from "views/admin/profile1";
 import DataTables from "views/admin/dataTables";
 import RTL from "views/admin/rtl";
 
@@ -42,6 +43,13 @@ const routes = [
     icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
     path: "/data-tables",
     component: DataTables,
+  },
+  {
+    name: "Request Details",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    path: "/details",
+    component: Profile1,
   },
   {
     name: "Add Event",

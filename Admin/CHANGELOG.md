@@ -2,7 +2,7 @@
 
 🐛 Bugs solved:
 
-- Calendar card - Card border bug on dark mode
+- Calendar card - Card border bug on dark mo
 - Development Table - Missing content bug
 - Solved the warnings regarding stylis-plugin-rtl
 - Fixed console warnings
