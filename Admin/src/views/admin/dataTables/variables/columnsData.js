@@ -66,13 +66,17 @@ export const columnsDataComplex = [
   },
 
   {
-    Header: "ENROLLMENT DATE",
-    accessor: "date",
+    Header: "TYPE",
+    accessor: "type",
+  },
+
+  {
+    Header: "THEME",
+    accessor: "theme",
   },
 
   {
     Header: "STATUS",
     accessor: "status",
   },
-
 ];
