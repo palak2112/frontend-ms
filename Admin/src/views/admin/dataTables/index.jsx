@@ -34,7 +34,6 @@ const statusMapping = {
 
 export default function Settings() {
   const [apiData, setApiData] = useState([]);
-  const [showDetail, setShowDetail] = useState({ show: false, reqId: -1 });
 
   const fetchRequests = async () => {
     try {
@@ -63,13 +62,8 @@ export default function Settings() {
     console.log(apiData);
   }, []);
 
-  const toggleRequestDetail = (reqId) => {
-    if (reqId === -1) setShowDetail({ show: false, reqId: -1 });
-    else setShowDetail({ show: true, reqId });
-  };
-
   // Chakra Color Mode
-  return showDetail.show === false ? (
+  return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       <HStack spacing={3}>
         <Select placeholder="Aid Type" bg="white">
@@ -114,14 +108,8 @@ export default function Settings() {
           columnsData={columnsDataColumns}
           tableData={tableDataColumns}
         /> */}
-        <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={apiData}
-          toggleRequestDetailCB={toggleRequestDetail}
-        />
+        <ComplexTable columnsData={columnsDataComplex} tableData={apiData} />
       </SimpleGrid>
     </Box>
-  ) : (
-    <Overview reqId={showDetail.reqId} />
   );
 }

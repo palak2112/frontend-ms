@@ -26,19 +26,85 @@ import avatar from "assets/img/avatars/avatar4.png";
 import React from "react";
 import { useState } from "react";
 
+import { fetchRequestById } from "../../../api/requestApi";
+import { fetchUserById } from "../../../api/userApi";
+import { getDocumentsByRequestId } from "../../../api/requestApi";
+
+import { useEffect } from "react";
+
+import { useParams } from "react-router-dom";
+
+import { MdDone, MdClear } from "react-icons/md";
+
 export default function Overview(props) {
-  const { reqId } = props;
+  const { rid } = useParams();
+
   const [apiData, setApiData] = useState({
     userData: [],
     requestData: [],
     documentData: [],
   });
 
-  // const fetchD
+  const fetchData = async () => {
+    let requestData;
+    let userData;
+    let documentData;
+
+    try {
+      const response = await fetchRequestById(rid);
+      requestData = response.data.data;
+      try {
+        const response = await fetchUserById(requestData.userId);
+        userData = response.data.data;
+      } catch (e) {
+        console.log(e);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      const response = await getDocumentsByRequestId(rid);
+      documentData = response.data;
+    } catch (e) {
+      console.log(e);
+      documentData = [];
+    }
+
+    setApiData({ userData, requestData, documentData });
+  };
+
+  useEffect(() => {
+    fetchData();
+    console.log({ apiData });
+  }, []);
 
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
+      <Flex justify="flex-end">
+        <Button
+          leftIcon={<MdDone />}
+          colorScheme="green"
+          variant="solid"
+          size="lg"
+          mx="3"
+          my="4"
+        >
+          Approve
+        </Button>
+        <Button
+          leftIcon={<MdClear />}
+          colorScheme="red"
+          variant="solid"
+          size="lg"
+          mx="3"
+          my="4"
+        >
+          Reject
+        </Button>
+      </Flex>
+
       <Grid
         templateColumns={{
           base: "1fr",
@@ -99,12 +165,12 @@ export default function Overview(props) {
           posts="17"
           followers="9.7k"
           following="274"
+          data={apiData.userData}
         />
 
         <General
           gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
-          minH="365px"
-          pe="20px"
+          data={apiData.requestData}
         />
         <Notifications
           used={25.6}
@@ -114,17 +180,9 @@ export default function Overview(props) {
             lg: "2 / 1 / 3 / 3",
             "2xl": "1 / 3 / 2 / 4",
           }}
+          data={apiData.documentData}
         />
       </Grid>
-
-      <Flex justify="flex-end">
-        <Button colorScheme="blue" variant="outline" size="lg" mx="8" my="4">
-          Approved
-        </Button>
-        <Button colorScheme="blue" variant="outline" size="lg" mx="8" my="4">
-          Rejected
-        </Button>
-      </Flex>
 
       {/* <ColumnsTable
           columnsData={columnsDataColumns}

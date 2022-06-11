@@ -9,10 +9,10 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 // Assets
 export default function GeneralInformation(props) {
-  const { ...rest } = props;
+  const { data, ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -23,16 +23,17 @@ export default function GeneralInformation(props) {
   return (
     <Card mb={{ base: "0px", "2xl": "20px" }} {...rest}>
       <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='2xl'
-      mt='10px'
-      mb='4px'>
-      Request Details
-    </Text>
-    
-    <SimpleGrid >
-      {/* <Information
+        color={textColorPrimary}
+        fontWeight="bold"
+        fontSize="2xl"
+        mt="10px"
+        mb="4px"
+      >
+        Request Details
+      </Text>
+
+      <SimpleGrid>
+        {/* <Information
         boxShadow={cardShadow}
         title='Education'
         value='Stanford University'
@@ -63,43 +64,51 @@ export default function GeneralInformation(props) {
         value='20 July 1986'
       /> */}
 
-     <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      >
-      Type : 
-      <Text color={textColorSecondary} fontSize='md' me='20px' mb='40px'>
-      Financial
-    </Text>
-    </Text>
-    <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      margin-top='-10px'
-      // mt='10px'
-      // mb='4px'
-      >
-      Theme :
-      <Text color={textColorSecondary} fontSize='md' me='20px' mb='40px' >
-     Education
-    </Text>
-    </Text>
+        <Text color={textColorPrimary} fontWeight="bold" fontSize="md">
+          Type :
+          <Text color={textColorSecondary} fontSize="md" me="20px" mb="40px">
+            {data.type}
+          </Text>
+        </Text>
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+          margin-top="-10px"
+          // mt='10px'
+          // mb='4px'
+        >
+          Theme :
+          <Text color={textColorSecondary} fontSize="md" me="20px" mb="40px">
+            {data.theme}
+          </Text>
+        </Text>
 
-    
-    <Text
-      color={textColorPrimary}
-      fontWeight='bold'
-      fontSize='md'
-      // mt='10px'
-      // mb='4px'
-      >
-      Description :
-      <Text color={textColorSecondary} fontSize='md' >
-      Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit 
-    </Text>
-    </Text>
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+          // mt='10px'
+          // mb='4px'
+        >
+          Description :
+          <Text color={textColorSecondary} fontSize="md" mb="60px">
+            {data.description}
+          </Text>
+        </Text>
+
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+          // mt='10px'
+          // mb='4px'
+        >
+          Status :
+          <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
+            {data.status}
+          </Text>
+        </Text>
       </SimpleGrid>
     </Card>
   );

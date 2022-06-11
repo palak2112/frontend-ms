@@ -51,8 +51,10 @@ const routes = [
     name: "Request Details",
     layout: "/admin",
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
-    path: "/details",
+    path: "/details/:rid",
     component: Profile1,
+    children: <Profile1 />,
+    sidebarIgnore: true,
   },
 
   {
