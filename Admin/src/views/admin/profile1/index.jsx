@@ -28,16 +28,27 @@ import { useState } from "react";
 
 import { fetchRequestById } from "../../../api/requestApi";
 import { fetchUserById } from "../../../api/userApi";
-import { getDocumentsByRequestId } from "../../../api/requestApi";
+import {
+  getDocumentsByRequestId,
+  updateRequest,
+} from "../../../api/requestApi";
 
 import { useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import { MdDone, MdClear } from "react-icons/md";
 
+const requestStatusMapping = {
+  APPROVAL_PENDING: "PENDING_UPLOADS",
+  UNDER_REVIEW: "COMPLETE",
+};
+
+const allowedStatusValues = ["APPROVAL_PENDING", "UNDER_REVIEW"];
+
 export default function Overview(props) {
   const { rid } = useParams();
+  const history = useHistory();
 
   const [apiData, setApiData] = useState({
     userData: [],
@@ -79,32 +90,50 @@ export default function Overview(props) {
     console.log({ apiData });
   }, []);
 
+  const updateStatus = async (status) => {
+    const payload = {
+      status,
+    };
+    try {
+      await updateRequest(payload, rid);
+      history.push("/admin/requests");
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
-      <Flex justify="flex-end">
-        <Button
-          leftIcon={<MdDone />}
-          colorScheme="green"
-          variant="solid"
-          size="lg"
-          mx="3"
-          my="4"
-        >
-          Approve
-        </Button>
-        <Button
-          leftIcon={<MdClear />}
-          colorScheme="red"
-          variant="solid"
-          size="lg"
-          mx="3"
-          my="4"
-        >
-          Reject
-        </Button>
-      </Flex>
-
+      {allowedStatusValues.includes(apiData.requestData.status) ? (
+        <Flex justify="flex-end">
+          <Button
+            leftIcon={<MdDone />}
+            colorScheme="green"
+            variant="solid"
+            size="lg"
+            mx="3"
+            my="4"
+            onClick={() =>
+              updateStatus(requestStatusMapping[apiData.requestData.status])
+            }
+          >
+            Approve
+          </Button>
+          <Button
+            leftIcon={<MdClear />}
+            colorScheme="red"
+            variant="solid"
+            size="lg"
+            mx="3"
+            my="4"
+            onClick={() => updateStatus("REJECTED")}
+          >
+            Reject
+          </Button>
+        </Flex>
+      ) : (
+        <div></div>
+      )}
       <Grid
         templateColumns={{
           base: "1fr",

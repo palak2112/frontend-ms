@@ -80,6 +80,7 @@ const routes = [
     path: "/sign-in",
     icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
     component: SignInCentered,
+    sidebarIgnore: true,
   },
   // {
   //   name: "RTL Admin",
