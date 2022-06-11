@@ -1,34 +1,37 @@
 [
   {
-    "uid":"C1450",
-    "name" : "Saira",
+    "uid": "C1450",
+    "name": "Saira",
     "status": "Completed",
-    "date": "24.Jan.2021"
-    
+    "type": "24.Jan.2021",
+    "theme": "24.Jan.2021"
   },
   {
-    "uid":"C1450",
-    "name" : "Saira",
+    "uid": "C1450",
+    "name": "Saira",
     "status": "Rejected",
-    "date": "30.Dec.2021"
-    
+    "type": "24.Jan.2021",
+    "theme": "24.Jan.2021"
   },
   {
-    "uid":"C1450",
-    "name" : "Saira",
+    "uid": "C1450",
+    "name": "Saira",
     "status": "Approval Pending",
-    "date": "20.May.2021"
+    "type": "24.Jan.2021",
+    "theme": "24.Jan.2021"
   },
   {
-    "uid":"C1450",
-    "name" : "Saira",
+    "uid": "C1450",
+    "name": "Saira",
     "status": "Under Review",
-    "date": "12.Jul.2021" 
+    "type": "24.Jan.2021",
+    "theme": "24.Jan.2021"
   },
   {
-    "uid":"C1450",
-    "name" : "Saira",
+    "uid": "C1450",
+    "name": "Saira",
     "status": "Pending Uploads",
-    "date": "12.Jul.2021"
+    "type": "24.Jan.2021",
+    "theme": "24.Jan.2021"
   }
 ]
