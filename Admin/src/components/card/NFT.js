@@ -131,7 +131,7 @@ export default function NFT(props) {
               ))}
             </AvatarGroup>
           </Flex>
-          <Flex align="start" justify="space-between" direction="row" mt="15px">
+          <Flex align="start" justify="space-between" direction="column" mt="15px">
             {/* <Link
               href={download}
               mt={{

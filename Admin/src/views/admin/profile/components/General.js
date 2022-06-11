@@ -2,17 +2,25 @@
 import { SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card.js";
-import React from "react";
+import {React,useState,useEffect} from "react";
+
 import Information from "views/admin/profile/components/Information";
 import {
   FormControl,
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Button,
+  Center
 } from '@chakra-ui/react'
+
+import {toast} from "react-toastify"
+
 // Assets
-export default function GeneralInformation(props) {
-  const { ...rest } = props;
+export default function GeneralInformation({uploadFile,gridArea,eventName,theme,agenda,location,description,
+  startDateTime,endDateTime,posterUrl,setEventName,setTheme,setAgenda,setDescription,setStartDateTime,
+  setEndDateTime,setPosterUrl,setLocation}) {
+  const {...rest} = gridArea;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -20,6 +28,17 @@ export default function GeneralInformation(props) {
     "0px 18px 40px rgba(112, 144, 176, 0.12)",
     "unset"
   );
+  // const [eventName,setEventName] = useState("");
+  // const [theme,setTheme] = useState("");
+  // const [agenda,setAgenda] = useState("");
+  // const [location,setLocation] = useState("");
+  // const [description,setDescription] = useState("");
+  // const [startDateTime,setStartDateTime] = useState("");
+  // const [endDateTime,setEndDateTime] = useState("");
+  // const [posterUrl, setPosterUrl] = useState("");
+  // const history = useHistory();
+
+
   return (
     <Card mb={{ base: "0px", "2xl": "20px" }} {...rest}>
       <Text
@@ -66,48 +85,66 @@ export default function GeneralInformation(props) {
         /> */}
           <FormControl isRequired>
               <FormLabel htmlFor='email'>Event name</FormLabel>
-              <input  placeholder='Add event name' id='email' type='email' />
+              <input  placeholder='Add event name' required = {true} id='email' type='text' value={eventName} onChange={(e) => {
+                  setEventName(e.target.value);
+                }}/>
               {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
         </FormControl>
 
         <FormControl>
           <FormLabel htmlFor='Theme'>Select Theme</FormLabel>
-          <select id='Theme' placeholder='Select Theme'>
-            <option>Counselling</option>
-            <option>Health</option>
-            <option>Finance</option>
-
+          <select id='Theme' placeholder='Select Theme' value={theme} onChange={(e) => {
+                  setTheme(e.target.value);
+                }}>
+            <option>HEALTHCARE</option>
+            <option>EDUCATION</option>
+            <option>LIVELIHOOD</option>
+            <option>LIFESTYLE</option>
+            <option>CAREER_COUNSELLING</option>
+            <option>GENERAL_COUNSELLING</option>
+            <option>WELLNESS_COUNSELLING</option>
           </select>
         </FormControl>
 
         <FormControl isRequired>
-  <FormLabel htmlFor='date'>Date</FormLabel>
-  <input  type="date" id='date' placeholder='Date' />
+  <FormLabel htmlFor='date'>Start Date & Time</FormLabel>
+  <input  type="datetime-local" id='date' placeholder='Date' value={startDateTime} onChange={(e)=>{
+    setStartDateTime(e.target.value);
+  }}/>
+        </FormControl>
+
+        <FormControl isRequired>
+  <FormLabel htmlFor='date'>End Date & Time</FormLabel>
+  <input  type="datetime-local" id='date' placeholder='Date' value={endDateTime} onChange={(e)=>{
+    setEndDateTime(e.target.value);
+  }}/>
         </FormControl>
         
         <FormControl isRequired>
   <FormLabel htmlFor='location'>Location</FormLabel>
-  <input id='location' placeholder='Location' />
+  <input id='location' placeholder='Add Location' value={location} onChange={(e)=>{
+    setLocation(e.target.value);
+  }}/>
 </FormControl>
         
 <FormControl >
-  <FormLabel htmlFor='Purpose of Event'>Purpose of Event</FormLabel>
-  <input id='Purpose of Event' placeholder='Purpose of Event' />
+  <FormLabel htmlFor='Purpose of Event'>Agenda</FormLabel>
+  <input id='Purpose of Event' placeholder='Add Agenda' value={agenda}  onChange={(e)=>{
+    setAgenda(e.target.value);
+  }}/>
 </FormControl>
 
 <FormControl isRequired>
   <FormLabel htmlFor='Description'>Description</FormLabel>
-  <input id='Description' placeholder='Description' />
-</FormControl>
-
-
-<FormControl isRequired>
-  <FormLabel htmlFor='Time'>Time</FormLabel>
-  <input type="Time" id='Time' placeholder='Time' />
+  <input id='Description' placeholder='Add Description' value={description} onChange={(e)=>{
+    setDescription(e.target.value);
+  }} />
 </FormControl>
 
 
       </SimpleGrid>
+      <br></br>
+      <br></br>
     </Card>
   );
 }
