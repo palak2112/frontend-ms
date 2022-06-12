@@ -15,8 +15,17 @@ import {
   FormHelperText,
 } from '@chakra-ui/react'
 import { useState } from "react";
+import General from 'views/admin/request2/components/General';
 
 export default function GeneralInformation(props) {
+  const [uploadFile, setUploadFile] = useState("");
+  const [eventName, setEventName] = useState("");
+  const [theme, setTheme] = useState("");
+  const [agenda, setAgenda] = useState("");
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+  const [startDateTime, setStartDateTime] = useState("");
+  const [endDateTime, setEndDateTime] = useState("");
   const textColorBrand = useColorModeValue("brand.500", "white");
   const handleClick = () => setShow(!show);
   const [show, setShow] = React.useState(false);
@@ -38,13 +47,20 @@ export default function GeneralInformation(props) {
     <>
       <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
         <Grid
-          mb='20px'
+          mx='150px'
           gridTemplateColumns={{ xl: "repeat(3, 1fr)", "2xl": "1fr 0.46fr" }}
           gap={{ base: "20px", xl: "20px" }}
-          display={{ base: "block", xl: "grid" }}>
+          display={{ base: "block" }}>
+          <General gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
+          minH="365px"
+          pe="20px"/>
+
         </Grid>
       </Box>
-      <FormControl isInvalid={isError} isRequired>
+
+
+
+      {/* <FormControl isInvalid={isError} isRequired>
         <FormLabel
           display='flex'
           ms='4px'
@@ -55,6 +71,7 @@ export default function GeneralInformation(props) {
           First Name
         </FormLabel>
         <Input
+          // w='0%'
           backgroundColor="white"
           isRequired={true}
           variant='auth'
@@ -163,6 +180,7 @@ export default function GeneralInformation(props) {
         onChange={handleInputChange}
       />
       <Input
+
         backgroundColor="white"
         isRequired={true}
         variant='auth'
@@ -436,7 +454,7 @@ export default function GeneralInformation(props) {
         ) : (
           <FormErrorMessage>First name is required.</FormErrorMessage>
         )}
-      </FormControl>
+      </FormControl> */}
     </>
   );
 }
