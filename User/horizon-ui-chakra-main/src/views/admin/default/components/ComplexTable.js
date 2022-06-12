@@ -200,6 +200,7 @@ import {
 // Custom components
 import Card from "components/card/Card";
 // import Menu from "components/menu/MainMenu";
+import moment from "moment"
 
 // Assets
 import {
@@ -308,10 +309,10 @@ export default function ColumnsTable(props) {
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "U-ID") {
+                  } else if (cell.column.Header === "Last-Updated") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
+                        {moment(new Date(cell.value)).format("LL")}
                       </Text>
                     );
                   } else if (cell.column.Header === "STATUS") {

@@ -65,8 +65,8 @@ export const columnsDataComplex = [
   //   accessor: "uid",
   // },
   {
-    Header: "Last Updated",
-    accessor: "name",
+    Header: "Last-Updated",
+    accessor: "updatedAt",
   },
 
   {

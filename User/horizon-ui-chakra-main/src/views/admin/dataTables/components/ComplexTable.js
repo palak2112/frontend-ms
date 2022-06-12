@@ -210,6 +210,9 @@ import {
   MdOutlineError,
 } from "react-icons/md";
 
+
+
+import moment from "moment"
 export default function ColumnsTable(props) {
   const history = useHistory();
   const { columnsData, tableData } = props;
@@ -235,7 +238,7 @@ export default function ColumnsTable(props) {
     prepareRow,
     initialState,
   } = tableInstance;
-  initialState.pageSize = 5;
+  initialState.pageSize = 20;
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
@@ -314,7 +317,14 @@ export default function ColumnsTable(props) {
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "STATUS") {
+                  }else if (cell.column.Header === "Last-Updated") {
+                    data = (
+                      <Text color={textColor} fontSize="sm" fontWeight="700">
+                        {moment(new Date(cell.value)).format("LL")}
+                      </Text>
+                    );
+                  } 
+                  else if (cell.column.Header === "STATUS") {
                     data = (
                       <Flex align="center">
                         <Icon
