@@ -18,8 +18,8 @@ import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
 import request from "views/admin/request";
 import request2 from "views/admin/request2";
-import event_details from "views/admin/event_details";
-
+import EventDetails from "views/admin/event_details";
+import RequestDetails from "views/admin/requestDetails";
 // import RTL from "views/admin/rtl";
 
 // Auth Imports
@@ -81,8 +81,17 @@ const routes = [
     layout: "/admin",
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
     path: "/eventdetails/:eid",
-    component: event_details,
-    children: <event_details />,
+    component: EventDetails,
+    children: <EventDetails />,
+    sidebarIgnore: true,
+  },
+  {
+    name: "Request Details",
+    layout: "/admin",
+    icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
+    path: "/requestdetails/:rid",
+    component: RequestDetails,
+    children: <RequestDetails />,
     sidebarIgnore: true,
   },
   // {
