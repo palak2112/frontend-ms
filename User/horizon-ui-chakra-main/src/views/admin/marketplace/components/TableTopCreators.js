@@ -121,11 +121,11 @@ function TopCreatorTable(props) {
                     } else if (cell.column.Header === "Rating") {
                       data = (
                         <Box>
-                          <Progress
+                          {/* <Progress
                             variant='table'
                             colorScheme='brandScheme'
                             value={cell.value}
-                          />
+                          /> */}
                         </Box>
                       );
                     }

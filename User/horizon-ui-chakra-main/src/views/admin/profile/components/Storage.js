@@ -55,12 +55,12 @@ export default function Banner(props) {
             {total} GB
           </Text>
         </Flex>
-        <Progress
+        {/* <Progress
           align='start'
           colorScheme='brandScheme'
           value={(used / total) * 100}
           w='100%'
-        />
+        /> */}
       </Box>
     </Card>
   );

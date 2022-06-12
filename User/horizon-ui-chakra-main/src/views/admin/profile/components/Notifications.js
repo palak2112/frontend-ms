@@ -1,5 +1,5 @@
 // Chakra imports
-import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import {Button, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
 // Custom components
 import SwitchField from "components/fields/SwitchField";
@@ -99,7 +99,7 @@ export default function Notifications(props) {
               fontWeight='500'
               w='25%'
               background="#F58220"
-              onClick={handleSubmit}
+              // onClick={handleSubmit}
               >
               Submit
             </Button>

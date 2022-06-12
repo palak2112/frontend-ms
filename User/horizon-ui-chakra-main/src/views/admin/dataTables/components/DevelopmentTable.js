@@ -156,13 +156,13 @@ export default function DevelopmentTable(props) {
                           fontWeight='700'>
                           {cell.value}%
                         </Text>
-                        <Progress
+                        {/* <Progress
                           variant='table'
                           colorScheme='brandScheme'
                           h='8px'
                           w='63px'
                           value={cell.value}
-                        />
+                        /> */}
                       </Flex>
                     );
                   }

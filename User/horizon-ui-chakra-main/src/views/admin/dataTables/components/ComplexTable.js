@@ -146,13 +146,13 @@ export default function ColumnsTable(props) {
                   } else if (cell.column.Header === "PROGRESS") {
                     data = (
                       <Flex align='center'>
-                        <Progress
+                        {/* <Progress
                           variant='table'
                           colorScheme='brandScheme'
                           h='8px'
                           w='108px'
                           value={cell.value}
-                        />
+                        /> */}
                       </Flex>
                     );
                   }
