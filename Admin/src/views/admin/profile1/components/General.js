@@ -32,7 +32,7 @@ export default function GeneralInformation(props) {
         Request Details
       </Text>
 
-      <SimpleGrid>
+      
         {/* <Information
         boxShadow={cardShadow}
         title='Education'
@@ -64,7 +64,8 @@ export default function GeneralInformation(props) {
         value='20 July 1986'
       /> */}
 
-        <Text color={textColorPrimary} fontWeight="bold" fontSize="md">
+      <SimpleGrid columns = "2">
+      <Text color={textColorPrimary} fontWeight="bold" fontSize="md">
           Type :
           <Text color={textColorSecondary} fontSize="md" me="20px" mb="40px">
             {data.type}
@@ -83,7 +84,9 @@ export default function GeneralInformation(props) {
             {data.theme}
           </Text>
         </Text>
+      </SimpleGrid>
 
+        <SimpleGrid>
         <Text
           color={textColorPrimary}
           fontWeight="bold"
@@ -96,7 +99,9 @@ export default function GeneralInformation(props) {
             {data.description}
           </Text>
         </Text>
-
+        </SimpleGrid>
+       
+        <SimpleGrid>
         <Text
           color={textColorPrimary}
           fontWeight="bold"
@@ -104,12 +109,16 @@ export default function GeneralInformation(props) {
           // mt='10px'
           // mb='4px'
         >
+        
+         
           Status :
           <Text color={textColorSecondary} fontSize="md" me="2px" mb="4px">
             {data.status}
           </Text>
-        </Text>
-      </SimpleGrid>
+          </Text>
+          </SimpleGrid>  
+        
+      
     </Card>
   );
 }

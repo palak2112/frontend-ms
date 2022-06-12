@@ -65,8 +65,8 @@ export default function Settings() {
   // Chakra Color Mode
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
+            
             <HStack width="50%" >
-       
        <InputGroup size='md'>
        <Input
        

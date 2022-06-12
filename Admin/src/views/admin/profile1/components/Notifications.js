@@ -1,5 +1,5 @@
 // Chakra imports
-import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { Icon,Flex, Text, useColorModeValue, Center } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
 // Custom components
 import SwitchField from "components/fields/SwitchField";
@@ -15,6 +15,7 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import moment from "moment";
 
@@ -43,14 +44,28 @@ export default function Notifications(props) {
                     <Td>{key}</Td>
                     <Td>Uploaded</Td>
                     <Td>
+                    
                       {" "}
                       {moment(new Date(data?.data?.updatedAt)).format("L")}{" "}
                     </Td>
-                    <Td>
+                    <Td color="blue" >
+                    <Text spacing="1">
                       {" "}
-                      <a href={data?.data?.data[key]} target="__blank">
-                        Link
+                      View &nbsp;
+                      <a href={data?.data?.data[key]} target="__blank" >
+                      <Icon
+                      ms='auto'
+                      as={ FaExternalLinkAlt}
+                      // color='secondaryGray.600'
+                      w='10px'
+                      h='10px'
+          />
+             
                       </a>{" "}
+                      
+                      
+                      </Text>
+                      
                     </Td>
                   </Tr>
                 );
