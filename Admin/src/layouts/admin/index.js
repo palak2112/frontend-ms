@@ -9,6 +9,8 @@ import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "routes.js";
 
+import SignInCentered from "views/auth/signIn";
+
 // Custom Chakra theme
 export default function Dashboard(props) {
   const { ...rest } = props;
@@ -91,13 +93,15 @@ export default function Dashboard(props) {
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
-        return (
+        return localStorage.getItem("token") ? (
           <Route
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
             children={prop.children}
           />
+        ) : (
+          <Redirect to="/auth/sign-in" />
         );
       }
       if (prop.collapse) {
