@@ -57,19 +57,30 @@ export const columnsDataColumns = [
 
 export const columnsDataComplex = [
   {
-    Header: "NAME",
+    Header: "REQ-ID",
+    accessor: "rid",
+  },
+  // {
+  //   Header: "U-ID",
+  //   accessor: "uid",
+  // },
+  {
+    Header: "Last Updated",
     accessor: "name",
   },
+
+  {
+    Header: "TYPE",
+    accessor: "type",
+  },
+
+  {
+    Header: "THEME",
+    accessor: "theme",
+  },
+
   {
     Header: "STATUS",
     accessor: "status",
-  },
-  {
-    Header: "DATE",
-    accessor: "date",
-  },
-  {
-    Header: "PROGRESS",
-    accessor: "progress",
   },
 ];

@@ -22,6 +22,9 @@ import {
   MdAttachMoney,
   MdBarChart,
   MdFileCopy,
+  MdCheckCircle,
+  MdOutlineError,
+  MdArticle
 } from "react-icons/md";
 import CheckTable from "views/admin/default/components/CheckTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
@@ -48,30 +51,30 @@ export default function UserReports() {
         gap='20px'
         mb='20px'>
         <MiniStatistics
-          // startContent={
-          //   <IconBox
-          //     w='56px'
-          //     h='56px'
-          //     bg={boxBg}
-          //     icon={
-          //       <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />
-          //     }
-          //   />
-          // }
+          startContent={
+            <IconBox
+              w='56px'
+              h='56px'
+              bg={boxBg}
+              icon={
+                <Icon w='32px' h='32px' as={MdCheckCircle} color={"green.500"} />
+              }
+            />
+          }
           name='Approved requests'
           value='5'
         />
         <MiniStatistics
-          // startContent={
-          //   <IconBox
-          //     w='56px'
-          //     h='56px'
-          //     bg={boxBg}
-          //     icon={
-          //       <Icon w='32px' h='32px' as={MdAttachMoney} color={brandColor} />
-          //     }
-          //   />
-          // }
+          startContent={
+            <IconBox
+              w='56px'
+              h='56px'
+              bg={boxBg}
+              icon={
+                <Icon w='32px' h='32px' as={MdOutlineError} color={"orange.500"} />
+              }
+            />
+          }
           name='Pending approval'
           value='5'
         />
@@ -94,18 +97,30 @@ export default function UserReports() {
           //     </Select>
           //   </Flex>
           // }
+          startContent={
+            <IconBox
+              w='56px'
+              h='56px'
+              bg={boxBg}
+              icon={
+                <Icon w='32px' h='32px' as={MdArticle} color={"blue.500"} />
+              }
+            />
+          }
           name='Pending Upload'
           value='5'
         />
         <MiniStatistics
-          // startContent={
-          //   <IconBox
-          //     w='56px'
-          //     h='56px'
-          //     bg='linear-gradient(90deg, #4481EB 0%, #04BEFE 100%)'
-          //     icon={<Icon w='28px' h='28px' as={MdAddTask} color='white' />}
-          //   />
-          // }
+          startContent={
+            <IconBox
+              w='56px'
+              h='56px'
+              bg={boxBg}
+              icon={
+                <Icon w='32px' h='32px' as={MdAddTask} color={"yellow.500"} />
+              }
+            />
+          }
           name='Under Review'
           value='154'
         />

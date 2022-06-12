@@ -249,14 +249,14 @@ export default function ColumnsTable(props) {
       overflowX={{ sm: "scroll", lg: "hidden" }}
     >
       <Flex px="25px" justify="space-between" mb="20px" align="center">
-        <Text
+        {/* <Text
           color={textColor}
           fontSize="22px"
           fontWeight="700"
           lineHeight="100%"
         >
-          Records
-        </Text>
+          All Records
+        </Text> */}
       </Flex>
       <Table
         {...getTableProps()}

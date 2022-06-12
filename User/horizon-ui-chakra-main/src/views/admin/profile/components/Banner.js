@@ -36,7 +36,7 @@ export default function Banner(props) {
       <Text color={textColorSecondary} fontSize='sm'>
         {job}
       </Text>
-      <Flex w='max-content' mx='auto' mt='26px'>
+      {/* <Flex w='max-content' mx='auto' mt='26px'>
         <Flex mx='auto' me='60px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {posts}
@@ -61,7 +61,7 @@ export default function Banner(props) {
             Following
           </Text>
         </Flex>
-      </Flex>
+      </Flex> */}
     </Card>
   );
 }

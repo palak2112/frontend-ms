@@ -5,8 +5,10 @@ import {
   MdBarChart,
   MdPerson,
   MdHome,
-  MdLock,
-  MdOutlineShoppingCart,
+  MdLogout,
+  MdLibraryBooks,
+  MdOutlineNewLabel,
+  MdEventAvailable
 } from "react-icons/md";
 
 // Admin Imports
@@ -34,15 +36,15 @@ const routes = [
   {
     name: "Raise new request",
     layout: "/admin",
-    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdOutlineNewLabel} width='20px' height='20px' color='inherit' />,
     // path: "/data-tables",
     path: "/request2",
     component: request2,
   },
   {
-    name: "Recent requests",
+    name: "All requests",
     layout: "/admin",
-    icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdLibraryBooks} width='20px' height='20px' color='inherit' />,
     path: "/data-tables",
     component: DataTables,
   },
@@ -52,7 +54,7 @@ const routes = [
     path: "/nft-marketplace",
     icon: (
       <Icon
-        as={MdOutlineShoppingCart}
+        as={MdEventAvailable}
         width='20px'
         height='20px'
         color='inherit'
@@ -69,10 +71,10 @@ const routes = [
     component: Profile,
   },
   {
-    name: "Sign In",
+    name: "Sign Out",
     layout: "/auth",
     path: "/sign-in",
-    icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdLogout} width='20px' height='20px' color='inherit' />,
     component: SignInCentered,
   },
   {
