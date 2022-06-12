@@ -54,6 +54,7 @@ export default function Projects({uploadFile,setUploadFile}) {
 <br></br>
 
       <Center>
+        
       <Button
               fontSize='sm'
               variant='brand'

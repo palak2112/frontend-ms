@@ -11,7 +11,7 @@ export default function Notifications(props) {
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   return (
     <Card mb='20px' {...rest}>
-      <Flex align='center' w='100%' justify='space-between' mb='30px'>
+      {/* <Flex align='center' w='100%' justify='space-between' mb='30px'>
         <Text
           color={textColorPrimary}
           fontWeight='bold'
@@ -91,7 +91,19 @@ export default function Notifications(props) {
         mb='20px'
         id='10'
         label='Email me when someone follows me'
-      />
+      /> */}
+      <Flex justify="flex-end">
+        <Button
+              fontSize='sm'
+              variant='brand'
+              fontWeight='500'
+              w='25%'
+              background="#F58220"
+              onClick={handleSubmit}
+              >
+              Submit
+            </Button>
+        </Flex>
     </Card>
   );
 }

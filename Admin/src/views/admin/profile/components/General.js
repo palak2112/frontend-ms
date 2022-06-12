@@ -1,5 +1,5 @@
 // Chakra imports
-import { SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
+import {Textarea,Select,Input, Flex,SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card.js";
 import {React,useState,useEffect} from "react";
@@ -49,9 +49,10 @@ export default function GeneralInformation({uploadFile,gridArea,eventName,theme,
         mb='4px'>
         EVENT DETAILS
       </Text>
-      <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
+      <br></br>
+      {/* <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
         Add the event details in the form below..
-      </Text>
+      </Text> */}
       <SimpleGrid columns='2' gap='20px'>
         {/* <Information
           boxShadow={cardShadow}
@@ -85,7 +86,7 @@ export default function GeneralInformation({uploadFile,gridArea,eventName,theme,
         /> */}
           <FormControl isRequired>
               <FormLabel htmlFor='email'>Event name</FormLabel>
-              <input  placeholder='Add event name' required = {true} id='email' type='text' value={eventName} onChange={(e) => {
+              <Input  placeholder='Add event name' required = {true} id='event name' type='text' value={eventName} onChange={(e) => {
                   setEventName(e.target.value);
                 }}/>
               {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
@@ -93,7 +94,7 @@ export default function GeneralInformation({uploadFile,gridArea,eventName,theme,
 
         <FormControl>
           <FormLabel htmlFor='Theme'>Select Theme</FormLabel>
-          <select id='Theme' placeholder='Select Theme' value={theme} onChange={(e) => {
+          <Select id='Theme' placeholder='Select Theme' value={theme} onChange={(e) => {
                   setTheme(e.target.value);
                 }}>
             <option>HEALTHCARE</option>
@@ -103,45 +104,47 @@ export default function GeneralInformation({uploadFile,gridArea,eventName,theme,
             <option>CAREER_COUNSELLING</option>
             <option>GENERAL_COUNSELLING</option>
             <option>WELLNESS_COUNSELLING</option>
-          </select>
+          </Select>
         </FormControl>
 
         <FormControl isRequired>
   <FormLabel htmlFor='date'>Start Date & Time</FormLabel>
-  <input  type="datetime-local" id='date' placeholder='Date' value={startDateTime} onChange={(e)=>{
+  <Input  type="datetime-local" id='date' placeholder='Date' value={startDateTime} onChange={(e)=>{
     setStartDateTime(e.target.value);
   }}/>
         </FormControl>
 
         <FormControl isRequired>
   <FormLabel htmlFor='date'>End Date & Time</FormLabel>
-  <input  type="datetime-local" id='date' placeholder='Date' value={endDateTime} onChange={(e)=>{
+  <Input  type="datetime-local" id='date' placeholder='Date' value={endDateTime} onChange={(e)=>{
     setEndDateTime(e.target.value);
   }}/>
         </FormControl>
         
         <FormControl isRequired>
   <FormLabel htmlFor='location'>Location</FormLabel>
-  <input id='location' placeholder='Add Location' value={location} onChange={(e)=>{
+  <Input id='location' placeholder='Add Location' value={location} onChange={(e)=>{
     setLocation(e.target.value);
   }}/>
 </FormControl>
         
 <FormControl >
   <FormLabel htmlFor='Purpose of Event'>Agenda</FormLabel>
-  <input id='Purpose of Event' placeholder='Add Agenda' value={agenda}  onChange={(e)=>{
+  <Input id='Purpose of Event' placeholder='Add Agenda' value={agenda}  onChange={(e)=>{
     setAgenda(e.target.value);
   }}/>
 </FormControl>
 
-<FormControl isRequired>
+
+      </SimpleGrid>
+      <br></br>
+      <SimpleGrid>
+      <FormControl isRequired>
   <FormLabel htmlFor='Description'>Description</FormLabel>
-  <input id='Description' placeholder='Add Description' value={description} onChange={(e)=>{
+  <Textarea id='Description' placeholder='Add Description' value={description} onChange={(e)=>{
     setDescription(e.target.value);
   }} />
-</FormControl>
-
-
+</FormControl> 
       </SimpleGrid>
       <br></br>
       <br></br>

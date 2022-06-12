@@ -1,5 +1,5 @@
 // Chakra imports
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { InputRightElement,InputGroup,Input,Button,Flex,Box, SimpleGrid } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
 import { Stack, HStack } from "@chakra-ui/react";
 // import DevelopmentTable from "views/admin/dataTables/components/DevelopmentTable";
@@ -65,7 +65,34 @@ export default function Settings() {
   // Chakra Color Mode
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-      {/* <HStack spacing={3}>
+            <HStack width="50%" >
+       
+       <InputGroup size='md'>
+       <Input
+       
+         placeholder='Enter U-ID'
+         _placeholder={{color: 'gray.500'}}
+         variant='brand'
+       />
+       {/* <InputRightElement width='4.5rem'>
+         <Button h='1.75rem' size='md' >
+           Search
+         </Button>
+       </InputRightElement> */}
+     </InputGroup>
+     <Button
+               fontSize='sm'
+               variant='brand'
+               fontWeight='500'
+               w='%'
+               background="#1B254B"
+               
+               >
+               Submit
+             </Button>
+       </HStack>
+       <Box><br /></Box>
+      <HStack spacing={3}>
         <Select placeholder="Aid Type" bg="white">
           <option value="option1">Financial</option>
           <option value="option2">Non-Financial</option>
@@ -89,11 +116,26 @@ export default function Settings() {
           <option value="option7">Counselling</option>
           <option value="option8">Livelihood</option>
         </Select>
-      </HStack> */}
+        <Flex justify="flex-end">
+        <Button
+              fontSize='sm'
+              variant='brand'
+              fontWeight='500'
+              w='%'
+              background="#1B254B"
+              
+              >
+              Apply
+            </Button>
+         </Flex>
+
+      </HStack>
+     
+
+      
       <Box>
         <br></br>
       </Box>
-
       <SimpleGrid
         mb="20px"
         columns={{ sm: 1, md: 2 }}

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Select,
   IconButton,
   Input,
   InputGroup,
@@ -19,25 +20,25 @@ export function SearchBar(props) {
     
     <InputGroup w={{ base: "100%", md: "200px" }} {...rest}>
       <InputLeftElement
-        children={
-          <IconButton
-            bg='inherit'
-            borderRadius='inherit'
-            _hover='none'
-            _active={{
-              bg: "inherit",
-              transform: "none",
-              borderColor: "transparent",
-            }}
-            _focus={{
-              boxShadow: "none",
-            }}
-            icon={
-              <SearchIcon color={searchIconColor} w='15px' h='15px' />
-            }></IconButton>
-        }
+        // children={
+        //   <IconButton
+        //     bg='inherit'
+        //     borderRadius='inherit'
+        //     _hover='none'
+        //     _active={{
+        //       bg: "inherit",
+        //       transform: "none",
+        //       borderColor: "transparent",
+        //     }}
+        //     _focus={{
+        //       boxShadow: "none",
+        //     }}
+        //     icon={
+        //       <SearchIcon color={searchIconColor} w='15px' h='15px' />
+        //     }></IconButton>
+        // }
       />
-      <Input
+      {/* <Input
         variant='search'
         fontSize='sm'
         bg={background ? background : inputBg}
@@ -46,7 +47,19 @@ export function SearchBar(props) {
         _placeholder={{ color: "gray.400", fontSize: "14px" }}
         borderRadius={borderRadius ? borderRadius : "30px"}
         placeholder={placeholder ? placeholder : "Search..."}
-      />
+
+      /> */}
+      <Select placeholder=""
+      variant='search'
+        fontSize='sm'
+        bg={background ? background : inputBg}
+        color={inputText}
+        fontWeight='500'
+        _placeholder={{ color: "gray.400", fontSize: "14px" }}
+        borderRadius={borderRadius ? borderRadius : "30px"}>
+          <option value="option1" selected >English </option>
+          <option value="option2"> Hindi </option>
+        </Select>
     </InputGroup>
   );
 }
