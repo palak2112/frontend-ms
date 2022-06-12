@@ -118,7 +118,11 @@ export default function Dashboard(props) {
           toggleSidebar,
           setToggleSidebar,
         }}>
-        <Sidebar routes={routes} display='none' {...rest} />
+        <Sidebar
+          routes={routes.filter((route) => route.sidebarIgnore === undefined)}
+          display="none"
+          {...rest}
+        />
         <Box
           float='right'
           minHeight='100vh'
