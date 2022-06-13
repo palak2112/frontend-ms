@@ -29,6 +29,8 @@ import { updateDocument } from "api/documentApi";
 import { updateRequest } from "api/requestApi";
 import { useHistory } from "react-router-dom";
 
+import { Offline, Online } from "react-detect-offline";
+
 function dataURItoBlob(dataURI) {
   // convert base64 to raw binary data held in a string
   // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
@@ -57,9 +59,11 @@ function dataURItoBlob(dataURI) {
 const DocListItem = (props) => {
   const { name, status, reqId, reqStatus, docNumber, awsUrls, setAwsUrlsCB } =
     props;
+  console.log(`doc-${reqId}-${docNumber}`);
+  console.log("AWS", awsUrls);
   const [uploadFile, setUploadFile] = useState("");
-  const [uploadStatus, setUploadStatus] = useState(status !== "");
-
+  const [uploadStatus, setUploadStatus] = useState(status.length > 0);
+  console.log(awsUrls[`doc-${reqId}-${docNumber}`].length, uploadStatus);
   useEffect(async () => {
     if (uploadFile === "") return;
 
@@ -96,6 +100,60 @@ const DocListItem = (props) => {
 
     setUploadStatus(true);
   };
+
+  const handleNetworkChange = async () => {
+    if (localStorage.getItem(`doc-${reqId}-${docNumber}`)) {
+      // Upload file to AWS
+      const blob = dataURItoBlob(
+        localStorage.getItem(`doc-${reqId}-${docNumber}`)
+      );
+      const fd = new FormData();
+      // const xhr = new XMLHttpRequest();
+
+      fd.append("file", blob, blob.name);
+
+      const res = await documentsUpload(fd);
+
+      if (res.status === 200) {
+        localStorage.removeItem(`doc-${reqId}-${docNumber}`);
+        console.log({
+          ...awsUrls,
+          [`doc-${reqId}-${docNumber}`]: res.data.data,
+        });
+        setAwsUrlsCB({
+          ...awsUrls,
+          [`doc-${reqId}-${docNumber}`]: res.data.data,
+        });
+      }
+
+      setUploadStatus(true);
+    }
+    // for (const [key, value] of Object.entries(localStorage)) {
+    //   console.log(`${key}: ${value}`);
+    //   if (key.startsWith("doc") && key.split("-")[1] == reqId) {
+    //     // Upload file to AWS
+    //     const blob = dataURItoBlob(localStorage.getItem(key));
+    //     const fd = new FormData();
+    //     // const xhr = new XMLHttpRequest();
+
+    //     fd.append("file", blob, blob.name);
+
+    //     const res = await documentsUpload(fd);
+
+    //     if (res.status === 200) {
+    //       localStorage.removeItem(key);
+    //       console.log({ ...awsUrls, [key]: res.data.data });
+    //       setAwsUrls({
+    //         ...awsUrls,
+    //         [key]: res.data.data,
+    //       });
+    //     }
+
+    //     // setUploadStatus(true);
+    //   }
+    // }
+  };
+
   return (
     <Tr>
       <Td>{name}</Td>
@@ -176,6 +234,30 @@ export default function Notifications(props) {
     window.location.reload();
   };
 
+  const handleNetworkChange = async () => {
+    for (const [key, value] of Object.entries(localStorage)) {
+      console.log(`${key}: ${value}`);
+      if (key.startsWith("doc") && key.split("-")[1] == reqId) {
+        // Upload file to AWS
+        const blob = dataURItoBlob(localStorage.getItem(key));
+        const fd = new FormData();
+        // const xhr = new XMLHttpRequest();
+
+        fd.append("file", blob, blob.name);
+
+        const res = await documentsUpload(fd);
+
+        if (res.status === 200) {
+          localStorage.removeItem(key);
+          console.log({ ...awsUrls, [key]: res.data.data });
+          setAwsUrls({
+            ...awsUrls,
+            [key]: res.data.data,
+          });
+        }
+      }
+    }
+  };
   return (
     <Card mb="20px" {...rest}>
       <TableContainer>
@@ -189,12 +271,12 @@ export default function Notifications(props) {
             </Tr>
           </Thead>
           <Tbody>
-            {data?.data?.data &&
-              Object.keys(data?.data?.data).map((key, idx) => {
+            {awsUrls &&
+              Object.keys(awsUrls).map((key, idx) => {
                 return (
                   <DocListItem
-                    name={key}
-                    status={data?.data?.data[key]}
+                    name={Object.keys(data?.data?.data)[idx]}
+                    status={awsUrls[key]}
                     docNumber={idx}
                     reqId={reqId}
                     reqStatus={reqStatus}
@@ -217,6 +299,7 @@ export default function Notifications(props) {
           Submit
         </Button>
       )}
+      <Offline onChange={handleNetworkChange}></Offline>
       {/* <Flex align='center' w='100%' justify='space-between' mb='30px'>
         <Text
           color={textColorPrimary}
