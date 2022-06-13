@@ -1,4 +1,6 @@
 /* eslint-disable */
+import { useTranslation } from "react-i18next";
+
 import {
   Flex,
   Progress,
@@ -25,6 +27,7 @@ import {
 
 export default function DevelopmentTable(props) {
   const { columnsData, tableData } = props;
+  const { t } = useTranslation();
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -64,7 +67,7 @@ export default function DevelopmentTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Development Table
+          {t("Development Table")}
         </Text>
         <Menu />
       </Flex>

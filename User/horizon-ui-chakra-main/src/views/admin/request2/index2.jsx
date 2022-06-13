@@ -1,5 +1,6 @@
 import { Box, Grid, SimpleGrid, Text, useColorModeValue, Input, InputGroup, InputRightElement, Icon, Flex, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // Custom components
 import Card from "components/card/Card.js";
@@ -16,6 +17,8 @@ import {
 import { useState } from "react";
 
 export default function GeneralInformation(props) {
+	const {t} = useTranslation();
+
 	const textColorBrand = useColorModeValue("brand.500", "white");
 	const handleClick = () => setShow(!show);
 	const [show, setShow] = React.useState(false);
@@ -51,7 +54,7 @@ export default function GeneralInformation(props) {
 					fontWeight='500'
 					color={textColor}
 					mb='8px'>
-					First Name
+					{t("First Name")}
 				</FormLabel>
 				<Input
 					backgroundColor="white"
@@ -70,7 +73,7 @@ export default function GeneralInformation(props) {
 				{!isError ? (
 					<FormHelperText></FormHelperText>
 				) : (
-					<FormErrorMessage>First name is required.</FormErrorMessage>
+						<FormErrorMessage>{t("First name is required.")}</FormErrorMessage>
 				)}
 
 
@@ -82,7 +85,7 @@ export default function GeneralInformation(props) {
 					color={textColor}
 					mb='8px'
 					mt='30px'>
-					Last Name
+					{t("Last Name")}
 				</FormLabel>
 				<Input
 					backgroundColor="white"
@@ -101,7 +104,7 @@ export default function GeneralInformation(props) {
 				{!isError ? (
 					<FormHelperText></FormHelperText>
 				) : (
-					<FormErrorMessage>Last name is required.</FormErrorMessage>
+						<FormErrorMessage>{t("Last name is required.")}</FormErrorMessage>
 				)}
 
 				<FormLabel
@@ -111,7 +114,7 @@ export default function GeneralInformation(props) {
 					fontWeight='500'
 					color={textColor}
 					mb='8px'>
-					Email
+					{t("Email")}
 				</FormLabel>
 				<Input
 					backgroundColor="white"
@@ -152,7 +155,7 @@ export default function GeneralInformation(props) {
 					fontWeight='500'
 					color={textColor}
 					mb='8px'>
-					Address
+					{t("Address")}
 				</FormLabel>
 				<Input
 					backgroundColor="white"
@@ -244,7 +247,7 @@ export default function GeneralInformation(props) {
 					fontWeight='500'
 					color={textColor}
 					display='flex'>
-					Password
+					{t("Password")}
 				</FormLabel>
 				<InputGroup size='md'>
 					<Input
@@ -268,32 +271,7 @@ export default function GeneralInformation(props) {
 						/>
 					</InputRightElement>
 				</InputGroup>
-				{/* <Flex justifyContent='space-between' align='center' mb='24px'>
-          <FormControl display='flex' alignItems='center'>
-            <Checkbox
-                  id='remember-login'
-                  colorScheme='brandScheme'
-                  me='10px'
-                />
-            <FormLabel
-              htmlFor='remember-login'
-              mb='0'
-              fontWeight='normal'
-              color={textColor}
-              fontSize='sm'>
-              Keep me logged in
-            </FormLabel>
-          </FormControl>
-          <NavLink to='/auth/forgot-password'>
-            <Text
-              color={textColorBrand}
-              fontSize='sm'
-              w='124px'
-              fontWeight='500'>
-              Forgot password?
-            </Text>
-          </NavLink>
-        </Flex> */}
+				
 				<Button
 					fontSize='sm'
 					variant='brand'
@@ -302,7 +280,7 @@ export default function GeneralInformation(props) {
 					h='50'
 					mb='24px'
 					background="#F58220">
-					Submit
+					{t("Submit")}
 				</Button>
 			</FormControl>
 		</>

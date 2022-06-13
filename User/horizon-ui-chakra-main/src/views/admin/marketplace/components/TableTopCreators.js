@@ -20,6 +20,8 @@ import {
   useSortBy,
   useTable,
 } from "react-table";
+import { useTranslation } from "react-i18next";
+
 
 function TopCreatorTable(props) {
   const { columnsData, tableData } = props;

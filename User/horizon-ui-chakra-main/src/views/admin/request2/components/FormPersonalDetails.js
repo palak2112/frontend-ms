@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useTranslation } from "react-i18next";
 
 
 export class FormPersonalDetails extends Component {
@@ -20,6 +21,8 @@ export class FormPersonalDetails extends Component {
   };
 
   render() {
+    const {t} = useTranslation();
+
     const { values, handleChange } = this.props;
     return (
       <MuiThemeProvider>
@@ -81,7 +84,7 @@ export class FormPersonalDetails extends Component {
               style={{ fontFamily: 'sans-serif', backgroundColor: '#f58220', borderColor: 'orange', color: 'white', fontWeight: 'bold', marginBottom: '10px' }}
               variant="contained"
               onClick={this.back}
-            >Back</Button>
+            >{t("Back")}</Button>
             <br />
 
             <Button
@@ -89,7 +92,7 @@ export class FormPersonalDetails extends Component {
               style={{ fontFamily: 'sans-serif', backgroundColor: '#f58220', borderColor: 'orange', color: 'white', fontWeight: 'bold' }}
               variant="contained"
               onClick={this.continue}
-            >Continue</Button>
+            >{t("Continue")}</Button>
 
           </Dialog>
         </>

@@ -1,4 +1,6 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 // Chakra imports
 import { Flex, Icon, Image, Text, useColorModeValue } from "@chakra-ui/react";
 // Custom components
@@ -7,6 +9,7 @@ import Card from "components/card/Card.js";
 import { FaEthereum } from "react-icons/fa";
 
 export default function NFT(props) {
+  const {t} = useTranslation();
   const { image, name, author, date, price } = props;
   // Chakra Color Mode
   const textColor = useColorModeValue("brands.900", "white");
@@ -38,7 +41,7 @@ export default function NFT(props) {
               mb='5px'
               fontWeight='bold'
               me='14px'>
-              {name}
+              {t(name)}
             </Text>
             <Text
               color='secondaryGray.600'
@@ -47,7 +50,7 @@ export default function NFT(props) {
               }}
               fontWeight='400'
               me='14px'>
-              {author}
+              {t(author)}
             </Text>
           </Flex>
           <Flex
@@ -55,11 +58,11 @@ export default function NFT(props) {
             align='center'>
             <Icon as={FaEthereum} color={textColor} width='9px' me='7px' />
             <Text fontWeight='700' fontSize='md' color={textColor}>
-              {price}
+              {t(price)}
             </Text>
           </Flex>
           <Text ms='auto' fontWeight='700' fontSize='sm' color={textColorDate}>
-            {date}
+            {t(date)}
           </Text>
         </Flex>
       </Flex>

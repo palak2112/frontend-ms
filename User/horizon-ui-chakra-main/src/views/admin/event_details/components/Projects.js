@@ -1,7 +1,8 @@
 // Chakra imports
 import { Center,SimpleGrid,Text, useColorModeValue } from "@chakra-ui/react";
-
 // Assets
+import { useTranslation } from "react-i18next";
+
 import Project1 from "assets/img/profile/Project1.png";
 import Project2 from "assets/img/profile/Project2.png";
 import Project3 from "assets/img/profile/Project3.png";
@@ -20,6 +21,8 @@ import { Heading } from '@chakra-ui/react'
 
 export default function Projects({posterUrl,name}) {
   // Chakra Color Mode
+  const {t} = useTranslation();
+
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
   const cardShadow = useColorModeValue(
@@ -40,41 +43,11 @@ export default function Projects({posterUrl,name}) {
       fontSize='2xl'
       mt='10px'
       mb='4px'>
-      {name}
+      {t(name)}
     </Text>
     
     <SimpleGrid>
-      {/* <Information
-        boxShadow={cardShadow}
-        title='Education'
-        value='Stanford University'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Languages'
-        value='English, Spanish, Italian'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Department'
-        value='Product Design'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Work History'
-        value='Google, Facebook'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Organization'
-        value='Simmmple Web LLC'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Birthday'
-        value='20 July 1986'
-      /> */}
-
+      
      <Box >
       <Center>
       <Image src={posterUrl} alt='No image' height='250px' width='50%'  borderRadius={"20px"}/>

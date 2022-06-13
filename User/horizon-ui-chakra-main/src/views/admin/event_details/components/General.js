@@ -1,4 +1,6 @@
 // Chakra imports
+import { useTranslation } from "react-i18next";
+
 import { SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card.js";
@@ -15,6 +17,8 @@ import {
 import moment from "moment";
 export default function GeneralInformation(props) {
   const { data, ...rest } = props;
+  const {t} = useTranslation();
+
   // console.log("hey", data);
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -32,45 +36,41 @@ export default function GeneralInformation(props) {
         mt="10px"
         mb="4px"
       >
-        Event Details
+        {t("Event Details")}
       </Text>
 
       <SimpleGrid>
-        {/* <Information
-        boxShadow={cardShadow}
-        title='Education'
-        value='Stanford University'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Languages'
-        value='English, Spanish, Italian'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Department'
-        value='Product Design'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Work History'
-        value='Google, Facebook'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Organization'
-        value='Simmmple Web LLC'
-      />
-      <Information
-        boxShadow={cardShadow}
-        title='Birthday'
-        value='20 July 1986'
-      /> */}
+      
 
         <Text color={textColorPrimary} fontWeight="bold" fontSize="md">
-          Name :
+          {t("Name :")}
           <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
-            {data?.data?.name}
+            {t(data?.data?.name)}
+          </Text>
+        </Text>
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+
+          
+        >
+          {t("Theme :")}
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            {t(data?.data?.theme)}
+          </Text>
+        </Text>
+        <Text
+          color={textColorPrimary}
+          fontWeight="bold"
+          fontSize="md"
+
+          
+        >
+          {t("Start Date :")}
+          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
+            {t(data?.data?.createdAt &&
+              moment(new Date(data?.data?.createdAt)).format("LLL"))}
           </Text>
         </Text>
         <Text
@@ -81,62 +81,22 @@ export default function GeneralInformation(props) {
           // mt='10px'
           // mb='4px'
         >
-          Theme :
+          {t("End Date :")}
           <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
-            {data?.data?.theme}
+            {t(data?.data?.updatedAt &&
+              moment(new Date(data?.data?.updatedAt)).format("LLL"))}
           </Text>
         </Text>
+        
         <Text
           color={textColorPrimary}
           fontWeight="bold"
           fontSize="md"
-
-          // mt='10px'
-          // mb='4px'
+         
         >
-          Start Date :
+          {t("Agenda :")}
           <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
-            {data?.data?.createdAt &&
-              moment(new Date(data?.data?.createdAt)).format("LLL")}
-          </Text>
-        </Text>
-        <Text
-          color={textColorPrimary}
-          fontWeight="bold"
-          fontSize="md"
-
-          // mt='10px'
-          // mb='4px'
-        >
-          End Date :
-          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
-            {data?.data?.updatedAt &&
-              moment(new Date(data?.data?.updatedAt)).format("LLL")}
-          </Text>
-        </Text>
-        {/* <Text
-          color={textColorPrimary}
-          fontWeight="bold"
-          fontSize="md"
-
-          // mt='10px'
-          // mb='4px'
-        >
-          Time :
-          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
-            9:00 - 12:00 PM
-          </Text>
-        </Text> */}
-        <Text
-          color={textColorPrimary}
-          fontWeight="bold"
-          fontSize="md"
-          // mt='10px'
-          // mb='4px'
-        >
-          Agenda :
-          <Text color={textColorSecondary} fontSize="md" me="10px" mb="20px">
-            {data?.data?.agenda}
+            {t(data?.data?.agenda)}
           </Text>
         </Text>
 
@@ -144,12 +104,11 @@ export default function GeneralInformation(props) {
           color={textColorPrimary}
           fontWeight="bold"
           fontSize="md"
-          // mt='10px'
-          // mb='4px'
+          
         >
-          Description :
+          {t("Description :")}
           <Text color={textColorSecondary} fontSize="md">
-            {data?.data?.description}
+            {t(data?.data?.description)}
           </Text>
         </Text>
       </SimpleGrid>

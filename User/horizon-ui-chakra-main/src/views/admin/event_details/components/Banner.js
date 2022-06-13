@@ -1,4 +1,6 @@
 // Chakra imports
+import { useTranslation } from "react-i18next";
+
 import { Avatar, Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
 import React from "react";
@@ -6,6 +8,8 @@ import React from "react";
 export default function Banner(props) {
   const { banner, avatar, name, job, posts, followers, following } = props;
   // Chakra Color Mode
+  const {t} = useTranslation();
+
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
   const borderColor = useColorModeValue(
@@ -31,34 +35,34 @@ export default function Banner(props) {
         borderColor={borderColor}
       />
       <Text color={textColorPrimary} fontWeight='bold' fontSize='xl' mt='10px'>
-        {name}
+        {t(name)}
       </Text>
       <Text color={textColorSecondary} fontSize='sm'>
-        {job}
+        {t(job)}
       </Text>
       <Flex w='max-content' mx='auto' mt='26px'>
         <Flex mx='auto' me='60px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-            {posts}
+            {t(posts)}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Posts
+            {t("Posts")}
           </Text>
         </Flex>
         <Flex mx='auto' me='60px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-            {followers}
+            {t(followers)}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Followers
+            {t("Followers")}
           </Text>
         </Flex>
         <Flex mx='auto' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-            {following}
+            {t(following)}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Following
+            {t("Following")}
           </Text>
         </Flex>
       </Flex>

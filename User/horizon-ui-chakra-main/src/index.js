@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "assets/css/App.css";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -11,14 +11,16 @@ import theme from "theme/theme";
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
-      <HashRouter>
-        <Switch>
-          <Route path={`/auth`} component={AuthLayout} />
-          <Route path={`/admin`} component={AdminLayout} />
-          <Route path={`/rtl`} component={RTLLayout} />
-          <Redirect from='/' to='/admin' />
-        </Switch>
-      </HashRouter>
+      <Suspense fallback="loading...">
+        <HashRouter>
+          <Switch>
+            <Route path={`/auth`} component={AuthLayout} />
+            <Route path={`/admin`} component={AdminLayout} />
+            <Route path={`/rtl`} component={RTLLayout} />
+            <Redirect from='/' to='/admin' />
+          </Switch>
+        </HashRouter>
+      </Suspense>
     </React.StrictMode>
   </ChakraProvider>,
   document.getElementById("root")

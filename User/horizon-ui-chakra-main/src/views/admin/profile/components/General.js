@@ -1,6 +1,8 @@
 // Chakra imports
 import { SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 // Custom components
+import { useTranslation } from "react-i18next";
+import "../../../../i18n.js";
 import Card from "components/card/Card.js";
 import React,{useState,useEffect} from "react";
 import Information from "views/admin/profile/components/Information";
@@ -8,11 +10,14 @@ import Banner from "views/admin/profile/components/Banner";
 import banner from "assets/img/auth/banner.png";
 import avatar from "assets/img/avatars/avatar4.png";
 
-import { fetchUserById } from "../../../../api/userApi";
+import { t } from "i18next";
 
+
+import { fetchUserById } from "../../../../api/userApi";
 // Assets
 export default function GeneralInformation(props) {
   const { ...rest } = props;
+  const {t} = useTranslation(); 
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -41,14 +46,7 @@ export default function GeneralInformation(props) {
 
   return (
     <Card mb={{ base: "0px", "2xl": "20px" }} {...rest}>
-      {/* <Text
-        color={textColorPrimary}
-        fontWeight='bold'
-        fontSize='2xl'
-        mt='10px'
-        mb='4px'>
-        General Information
-      </Text> */}
+    
       <Banner
           gridArea='2 / 2 / 2 / 2'
           banner={banner}
@@ -58,38 +56,42 @@ export default function GeneralInformation(props) {
           // posts='17'
           // followers='9.7k'
           // following='274'
+
         />
-      {/* <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
-        As we live, our hearts turn colder. 
-      </Text> */}
+     
       <SimpleGrid columns={{base: '1', md:'2'}} gap='20px'>
         <Information
           boxShadow={cardShadow}
-          title='UID'
+
+          title={t("UID")}
           value={userData && userData['uid']}
         />
         <Information
           boxShadow={cardShadow}
-          title='Email'
+          title={t("Email")}
           value={userData && userData['email']}
+
         />
        
         
         <Information
           boxShadow={cardShadow}
-          title='Year of Enrollment'
+
+          title={t("Year of Enrollment")}
           value={userData && userData['yearOfEnrolment']}
+
         />
         
         <Information
           boxShadow={cardShadow}
-          title='Phone No'
+
+          title={t("Phone No")}
           value={userData && userData['phoneNumber']}
         />
         
         <Information
           boxShadow={cardShadow}
-          title='Address'
+          title={t("Address")}
           value= {userData?.address &&
             Object.keys(userData?.address)
               .map(function (key) {

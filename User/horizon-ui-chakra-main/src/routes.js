@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Trans } from "react-i18next";
+import "i18n.js";
 import { Icon } from "@chakra-ui/react";
 import {
   MdBarChart,
@@ -24,10 +25,11 @@ import RequestDetails from "views/admin/requestDetails";
 
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
-
+// const {t} = useTranslation();
+var Dashboard = "Dashboard";
 const routes = [
   {
-    name: "Dashboard",
+    name: <Trans >{{Dashboard}}</Trans>,
     layout: "/admin",
     path: "/default",
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,

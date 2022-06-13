@@ -1,23 +1,4 @@
-// import {
-//   Flex,
-//   Table,
-//   Progress,
-//   Icon,
-//   Tbody,
-//   Td,
-//   Text,
-//   Th,
-//   Thead,
-//   Tr,
-//   useColorModeValue,
-// } from "@chakra-ui/react";
-// import React, { useMemo } from "react";
-// import {
-//   useGlobalFilter,
-//   usePagination,
-//   useSortBy,
-//   useTable,
-// } from "react-table";
+import { useTranslation } from "react-i18next";
 
 // // Custom components
 // import Card from "components/card/Card";
@@ -174,6 +155,7 @@
 //     </Card>
 //   );
 // }
+
 import {
   Flex,
   Table,
@@ -213,6 +195,7 @@ import moment from "moment";
 export default function ColumnsTable(props) {
   const history = useHistory();
   const { columnsData, tableData } = props;
+  const { t } = useTranslation();
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -249,14 +232,7 @@ export default function ColumnsTable(props) {
       overflowX={{ sm: "scroll", lg: "hidden" }}
     >
       <Flex px="25px" justify="space-between" mb="20px" align="center">
-        {/* <Text
-          color={textColor}
-          fontSize="22px"
-          fontWeight="700"
-          lineHeight="100%"
-        >
-          All Records
-        </Text> */}
+        
       </Flex>
       <Table
         {...getTableProps()}

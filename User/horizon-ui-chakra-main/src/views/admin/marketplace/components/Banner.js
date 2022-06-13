@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 // Chakra imports
 import { Button, Flex, Link, Text } from "@chakra-ui/react";
@@ -7,6 +8,8 @@ import { Button, Flex, Link, Text } from "@chakra-ui/react";
 import banner from "assets/img/nfts/NftBanner1.png";
 
 export default function Banner() {
+  const {t} = useTranslation();
+
   // Chakra Color Mode
   return (
     <Flex
@@ -30,7 +33,7 @@ export default function Banner() {
         }}
         fontWeight='700'
         lineHeight={{ base: "32px", md: "42px" }}>
-        Upcoming Events
+        {t("Upcoming Events")}
       </Text>
       <Text
         fontSize='md'
@@ -46,28 +49,9 @@ export default function Banner() {
         fontWeight='500'
         mb='40px'
         lineHeight='28px'>
-        Events related to Education, Healthcare, Lifestyle, Livelihood, Career Counselling, General Counselling and WellnessCounselling 
+        {t("Events related to Education, Healthcare, Lifestyle, Livelihood, Career Counselling, General Counselling and WellnessCounselling ")}
       </Text>
-      {/* <Flex align='center'>
-        <Button
-          bg='white'
-          color='black'
-          _hover={{ bg: "whiteAlpha.900" }}
-          _active={{ bg: "white" }}
-          _focus={{ bg: "white" }}
-          fontWeight='500'
-          fontSize='14px'
-          py='20px'
-          px='27'
-          me='38px'>
-          Discover now
-        </Button>
-        <Link>
-          <Text color='white' fontSize='sm' fontWeight='500'>
-            Watch video
-          </Text>
-        </Link>
-      </Flex> */}
+      
     </Flex>
   );
 }
