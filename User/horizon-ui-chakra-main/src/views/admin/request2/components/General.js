@@ -117,7 +117,7 @@ export default function GeneralInformation({
           >
             {Object.keys(REQUEST_TYPES).map((type_key, idx) => (
               <option key={`type-${idx}`} value={type_key}>
-                {REQUEST_TYPES[type_key]}
+                {t(REQUEST_TYPES[type_key])}
               </option>
             ))}
           </Select>
@@ -139,9 +139,9 @@ export default function GeneralInformation({
                 : NON_FINANCIAL_THEMES
             ).map((theme_key, idx) => (
               <option key={`type-${idx}`} value={theme_key}>
-                {selectedType === "FINANCIAL"
+                {t(selectedType === "FINANCIAL"
                   ? FINANCIAL_THEMES[theme_key]
-                  : NON_FINANCIAL_THEMES[theme_key]}
+                  : NON_FINANCIAL_THEMES[theme_key])}
               </option>
             ))}
           </Select>

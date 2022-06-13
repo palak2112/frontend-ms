@@ -29,7 +29,7 @@ import SignInCentered from "views/auth/signIn";
 var Dashboard = "Dashboard";
 const routes = [
   {
-    name: <Trans >{{Dashboard}}</Trans>,
+    name: "Dashboard",
     layout: "/admin",
     path: "/default",
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,

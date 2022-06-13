@@ -191,6 +191,7 @@ import {
   MdOutlineError,
 } from "react-icons/md";
 
+import { REQUEST_TYPES,NON_FINANCIAL_THEMES,FINANCIAL_THEMES } from "../../../../constants";
 import moment from "moment";
 export default function ColumnsTable(props) {
   const history = useHistory();
@@ -257,7 +258,7 @@ export default function ColumnsTable(props) {
                     fontSize={{ sm: "10px", lg: "12px" }}
                     color="gray.400"
                   >
-                    {column.render("Header")}
+                    {t(column.render("Header"))}
                   </Flex>
                 </Th>
               ))}
@@ -280,7 +281,7 @@ export default function ColumnsTable(props) {
               >
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "REQ-ID") {
+                  if (cell.column.Header === "REQUEST ID") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
                         {cell.value}
@@ -292,10 +293,10 @@ export default function ColumnsTable(props) {
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "Last-Updated") {
+                  } else if (cell.column.Header === "LAST UPDATED") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {moment(new Date(cell.value)).format("LL")}
+                        {moment(new Date(cell.value)).format("L")}
                       </Text>
                     );
                   } else if (cell.column.Header === "STATUS") {
@@ -333,14 +334,14 @@ export default function ColumnsTable(props) {
                           }
                         />
                         <Text color={textColor} fontSize="sm" fontWeight="700">
-                          {cell.value}
+                          {t(cell.value)}
                         </Text>
                       </Flex>
                     );
                   } else if (cell.column.Header === "TYPE") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
+                        {t(REQUEST_TYPES[cell.value])}
                       </Text>
                     );
                   } else if (cell.column.Header === "NAME") {
@@ -352,7 +353,7 @@ export default function ColumnsTable(props) {
                   } else if (cell.column.Header === "THEME") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {cell.value}
+                        {t(NON_FINANCIAL_THEMES[cell.value]?NON_FINANCIAL_THEMES[cell.value]:FINANCIAL_THEMES[cell.value])}
                       </Text>
                     );
                   }

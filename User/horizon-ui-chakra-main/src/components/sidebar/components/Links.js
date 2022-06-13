@@ -28,6 +28,7 @@ export function SidebarLinks(props) {
 
   // this function creates the links from the secondary accordions (for example auth -> sign-in -> default)
   const createLinks = (routes) => {
+    const {t} = useTranslation();
     return routes.map((route, index) => {
       if (route.category) {
         return (
@@ -86,7 +87,7 @@ export function SidebarLinks(props) {
                           ? "bold"
                           : "normal"
                       }>
-                      {route.name}
+                      {t(route.name)}
                     </Text>
                   </Flex>
                   <Box
@@ -119,7 +120,7 @@ export function SidebarLinks(props) {
                     fontWeight={
                       activeRoute(route.path.toLowerCase()) ? "bold" : "normal"
                     }>
-                    {route.name}
+                    {t(route.name)}
                   </Text>
                   <Box h='36px' w='4px' bg='brand.400' borderRadius='5px' />
                 </HStack>

@@ -12,10 +12,11 @@ import {
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import AdminNavbarLinks from "components/navbar/NavbarLinksAdmin";
+import { useTranslation } from "react-i18next";
 
 export default function AdminNavbar(props) {
   const [scrolled, setScrolled] = useState(false);
-
+  const {t} = useTranslation();
   useEffect(() => {
     window.addEventListener("scroll", changeNavbar);
 
@@ -103,13 +104,13 @@ export default function AdminNavbar(props) {
           <Breadcrumb>
             <BreadcrumbItem color={secondaryText} fontSize='sm' mb='5px'>
               <BreadcrumbLink href='#' color={secondaryText}>
-                Pages
+                {t("Pages")}
               </BreadcrumbLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem color={secondaryText} fontSize='sm'>
               <BreadcrumbLink href='#' color={secondaryText}>
-                {brandText}
+                {t(brandText)}
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
@@ -130,7 +131,7 @@ export default function AdminNavbar(props) {
             _focus={{
               boxShadow: "none",
             }}>
-            {brandText}
+            {t(brandText)}
           </Link>
         </Box>
         <Box ms='auto' w={{ sm: "100%", md: "unset" }}>

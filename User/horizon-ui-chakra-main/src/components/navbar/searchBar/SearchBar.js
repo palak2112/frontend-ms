@@ -9,6 +9,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next"
+
 export function SearchBar(props) {
   // Pass the computed styles into the `__css` prop
   const { variant, background, children, placeholder, borderRadius, ...rest } =
@@ -18,6 +20,7 @@ export function SearchBar(props) {
   const inputBg = useColorModeValue("secondaryGray.300", "navy.900");
   const inputText = useColorModeValue("gray.700", "gray.100");
   const [language, setLanguage] = useState("en");
+  const { t } = useTranslation();
   return (
 
     <InputGroup w={{ base: "100%", md: "200px" }} {...rest}>
@@ -85,7 +88,7 @@ export function SearchBar(props) {
         fontWeight='500'
         _placeholder={{ color: "gray.400", fontSize: "14px" }}
         borderRadius={borderRadius ? borderRadius : "30px"}>
-        <option value="xxxx" >Select language </option>
+        <option value="xxxx" >{t("Select language")} </option>
         <option value="en" >English </option>
         <option value="hi"> हिन्दी </option>
         

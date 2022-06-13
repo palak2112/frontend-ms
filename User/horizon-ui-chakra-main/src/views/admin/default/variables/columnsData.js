@@ -57,7 +57,7 @@ export const columnsDataColumns = [
 
 export const columnsDataComplex = [
   {
-    Header: "REQ-ID",
+    Header: "REQUEST ID",
     accessor: "rid",
   },
   // {
@@ -65,7 +65,7 @@ export const columnsDataComplex = [
   //   accessor: "uid",
   // },
   {
-    Header: "Last-Updated",
+    Header: "LAST UPDATED",
     accessor: "updatedAt",
   },
 

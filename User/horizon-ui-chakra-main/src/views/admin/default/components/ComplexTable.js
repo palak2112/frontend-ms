@@ -1,4 +1,4 @@
-
+import {REQUEST_TYPES,FINANCIAL_THEMES,NON_FINANCIAL_THEMES} from "../../../../constants"
 import { useTranslation } from "react-i18next";
 import {
   Flex,
@@ -109,7 +109,7 @@ const { t } = useTranslation();
                     fontSize={{ sm: "10px", lg: "12px" }}
                     color="gray.400"
                   >
-                    {column.render("Header")}
+                    {t(column.render("Header"))}
                   </Flex>
                 </Th>
               ))}
@@ -132,16 +132,16 @@ const { t } = useTranslation();
               >
                 {row.cells.map((cell, index) => {
                   let data = "";
-                  if (cell.column.Header === "REQ-ID") {
+                  if (cell.column.Header === "REQUEST ID") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
                         {t(cell.value)}
                       </Text>
                     );
-                  } else if (cell.column.Header === "Last-Updated") {
+                  } else if (cell.column.Header === "LAST UPDATED") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {moment(new Date(cell.value)).format("LL")}
+                        {moment(new Date(cell.value)).format("L")}
                       </Text>
                     );
                   } else if (cell.column.Header === "STATUS") {
@@ -186,7 +186,7 @@ const { t } = useTranslation();
                   } else if (cell.column.Header === "TYPE") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {t(cell.value)}
+                        {t(REQUEST_TYPES[cell.value])}
                       </Text>
                     );
                   } else if (cell.column.Header === "NAME") {
@@ -198,7 +198,7 @@ const { t } = useTranslation();
                   } else if (cell.column.Header === "THEME") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {t(cell.value)}
+                        {t(NON_FINANCIAL_THEMES[cell.value]?NON_FINANCIAL_THEMES[cell.value]:FINANCIAL_THEMES[cell.value])}
                       </Text>
                     );
                   }
