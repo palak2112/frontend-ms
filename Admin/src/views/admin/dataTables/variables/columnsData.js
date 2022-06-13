@@ -61,7 +61,7 @@ export const columnsDataComplex = [
     accessor: "rid",
   },
   {
-    Header: "U-ID",
+    Header: "UID",
     accessor: "uid",
   },
   {

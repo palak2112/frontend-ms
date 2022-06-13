@@ -66,21 +66,21 @@ export default function Settings() {
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
             
-            <HStack width="50%" >
-       <InputGroup size='md'>
+      
+       {/* <InputGroup size='md'>
        <Input
        
          placeholder='Enter U-ID'
          _placeholder={{color: 'gray.500'}}
          variant='brand'
        />
-       {/* <InputRightElement width='4.5rem'>
+       <InputRightElement width='4.5rem'>
          <Button h='1.75rem' size='md' >
            Search
          </Button>
-       </InputRightElement> */}
-     </InputGroup>
-     <Button
+       </InputRightElement>
+     </InputGroup> */}
+     {/* <Button
                fontSize='sm'
                variant='brand'
                fontWeight='500'
@@ -89,24 +89,24 @@ export default function Settings() {
                
                >
                Submit
-             </Button>
-       </HStack>
-       <Box><br /></Box>
-      <HStack spacing={3}>
-        <Select placeholder="Aid Type" bg="white">
+             </Button> */}
+       
+       
+     
+        {/* <Select placeholder="Aid Type" bg="white">
           <option value="option1">Financial</option>
           <option value="option2">Non-Financial</option>
-        </Select>
+        </Select> */}
 
-        <Select placeholder="Status" bg="white">
+        {/* <Select placeholder="Status" bg="white">
           <option value="option1">Approval_Pending</option>
           <option value="option2">Pending_Uploads</option>
           <option value="option3">Under_Review</option>
           <option value="option4">Completed</option>
           <option value="option5">Rejected</option>
-        </Select>
+        </Select> */}
 
-        <Select placeholder="Theme" bg="white">
+        {/* <Select placeholder="Theme" bg="white">
           <option value="option1">Education</option>
           <option value="option2">Health</option>
           <option value="option3">Lifeskill</option>
@@ -115,8 +115,8 @@ export default function Settings() {
           <option value="option6">Recreation</option>
           <option value="option7">Counselling</option>
           <option value="option8">Livelihood</option>
-        </Select>
-        <Flex justify="flex-end">
+        </Select> */}
+        {/* <Flex justify="flex-end">
         <Button
               fontSize='sm'
               variant='brand'
@@ -127,9 +127,9 @@ export default function Settings() {
               >
               Apply
             </Button>
-         </Flex>
+         </Flex> */}
 
-      </HStack>
+     
      
 
       

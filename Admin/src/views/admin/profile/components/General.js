@@ -47,7 +47,7 @@ export default function GeneralInformation({uploadFile,gridArea,eventName,theme,
         fontSize='2xl'
         mt='10px'
         mb='4px'>
-        EVENT DETAILS
+        Event Details
       </Text>
       <br></br>
       {/* <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
@@ -85,7 +85,7 @@ export default function GeneralInformation({uploadFile,gridArea,eventName,theme,
           value='20 July 1986'
         /> */}
           <FormControl isRequired>
-              <FormLabel htmlFor='email'>Event name</FormLabel>
+              <FormLabel htmlFor='email'>Event Name</FormLabel>
               <Input  placeholder='Add event name' required = {true} id='event name' type='text' value={eventName} onChange={(e) => {
                   setEventName(e.target.value);
                 }}/>

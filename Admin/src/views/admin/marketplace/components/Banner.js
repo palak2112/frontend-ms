@@ -80,19 +80,19 @@ export default function Banner() {
     <Flex justify="space-between">
     <HStack width="100%" >
       <>
-       <InputGroup size='md' width="100%">
-       <Input
+       {/* <InputGroup size='md' width="100%"> */}
+       {/* <Input
        
          placeholder='Enter event name'
          _placeholder={{color: 'gray.500'}}
          variant='brand'
-       />
+       /> */}
        {/* <InputRightElement width='4.5rem'>
          <Button h='1.75rem' size='md' >
            Search
          </Button>
        </InputRightElement> */}
-     </InputGroup>
+     {/* </InputGroup> */}
      {/* <Button
                fontSize='sm'
                variant='brand'
@@ -104,7 +104,7 @@ export default function Banner() {
                Search
              </Button> */}
        
-    <Select placeholder="Theme" bg="white" width="100%">
+    {/* <Select placeholder="Theme" bg="white" width="100%">
           <option value="option1">Education</option>
           <option value="option2">Health</option>
           <option value="option3">Lifeskill</option>
@@ -113,9 +113,9 @@ export default function Banner() {
           <option value="option6">Recreation</option>
           <option value="option7">Counselling</option>
           <option value="option8">Livelihood</option>
-        </Select>
+        </Select> */}
         {/* <Flex justify="flex-end"> */}
-        <Button
+        {/* <Button
               fontSize='sm'
               variant='brand'
               fontWeight='500'
@@ -124,11 +124,11 @@ export default function Banner() {
               
               >
               Search
-            </Button>
+            </Button> */}
          {/* </Flex> */}
          </>
          {/* <Flex justify="flex-end"> */}
-      <Button 
+      {/* <Button 
       //colorScheme="blue" variant="outline" size="lg" mx="8" my="4" 
               
               fontSize='sm'
@@ -139,15 +139,13 @@ export default function Banner() {
               
       onClick={redirectTo}>
         Add Event
-      </Button>
+      </Button> */}
     {/* </Flex> */}
          </HStack>
 
-         <br></br>
-  
-    <br></br>
+         
     </Flex>
-    <br></br>
+
     </Box>
   );
 }

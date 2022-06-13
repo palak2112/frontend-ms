@@ -57,7 +57,7 @@ const routes = [
   {
     name: "Upcoming events",
     layout: "/admin",
-    path: "/nft-marketplace",
+    path: "/upcomingevent",
     icon: (
       <Icon as={MdEventAvailable} width="20px" height="20px" color="inherit" />
     ),

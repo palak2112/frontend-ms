@@ -201,16 +201,21 @@ export default function Overview(props) {
           gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
           data={apiData.requestData}
         />
-        <Notifications
-          used={25.6}
-          total={50}
-          gridArea={{
-            base: "3 / 1 / 4 / 2",
-            lg: "2 / 1 / 3 / 3",
-            "2xl": "1 / 3 / 2 / 4",
-          }}
-          data={apiData.documentData}
-        />
+        {apiData?.requestData?.status &&
+        apiData.requestData.status !== "APPROVAL_PENDING" ? (
+          <Notifications
+            used={25.6}
+            total={50}
+            gridArea={{
+              base: "3 / 1 / 4 / 2",
+              lg: "2 / 1 / 3 / 3",
+              "2xl": "1 / 3 / 2 / 4",
+            }}
+            data={apiData.documentData}
+          />
+        ) : (
+          <div></div>
+        )}
       </Grid>
 
       {/* <ColumnsTable

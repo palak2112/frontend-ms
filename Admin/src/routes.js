@@ -10,6 +10,7 @@ import {
   MdNoteAdd,
   MdOutlineShoppingCart,
   MdAccountBalance,
+  MdOutlineEventAvailable
 } from "react-icons/md";
 
 // Admin Imports
@@ -26,26 +27,27 @@ import SignInCentered from "views/auth/signIn";
 
 const routes = [
   {
-    name: "Upcoming Events",
-    layout: "/admin",
-    icon: (
-      <Icon
-        as={MdOutlineShoppingCart}
-        width="20px"
-        height="20px"
-        color="inherit"
-      />
-    ),
-    path: "/NFTMarketplace",
-    component: NFTMarketplace,
-  },
-  {
     name: "Requests",
     layout: "/admin",
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
     path: "/requests",
     component: DataTables,
   },
+  {
+    name: "Upcoming Events",
+    layout: "/admin",
+    icon: (
+      <Icon
+        as={MdOutlineEventAvailable}
+        width="20px"
+        height="20px"
+        color="inherit"
+      />
+    ),
+    path: "/upcomingevent",
+    component: NFTMarketplace,
+  },
+
 
   {
     name: "Request Details",

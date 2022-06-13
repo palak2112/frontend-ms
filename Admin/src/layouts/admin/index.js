@@ -8,11 +8,13 @@ import { SidebarContext } from "contexts/SidebarContext";
 import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "routes.js";
+import { useTranslation } from "react-i18next";
 
 import SignInCentered from "views/auth/signIn";
 
 // Custom Chakra theme
 export default function Dashboard(props) {
+  const {t} = useTranslation();
   const { ...rest } = props;
   // states and functions
   const [fixed] = useState(false);
@@ -22,7 +24,7 @@ export default function Dashboard(props) {
     return window.location.pathname !== "/admin/full-screen-maps";
   };
   const getActiveRoute = (routes) => {
-    let activeRoute = "Default Brand Text";
+    let activeRoute = "Details";
     for (let i = 0; i < routes.length; i++) {
       if (routes[i].collapse) {
         let collapseActiveRoute = getActiveRoute(routes[i].items);
@@ -147,7 +149,7 @@ export default function Dashboard(props) {
             <Box>
               <Navbar
                 onOpen={onOpen}
-                logoText={"Horizon UI Dashboard PRO"}
+                logoText={"HEAL"}
                 brandText={getActiveRoute(routes)}
                 secondary={getActiveNavbar(routes)}
                 message={getActiveNavbarText(routes)}
@@ -167,7 +169,7 @@ export default function Dashboard(props) {
             >
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from="/" to="/admin/NFTMarketplace" />
+                <Redirect from="/" to="/admin/requests" />
               </Switch>
             </Box>
           ) : null}
