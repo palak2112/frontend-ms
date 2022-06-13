@@ -42,3 +42,11 @@ export const getDocumentsByUID = (UID) =>{
     const payload = {};
     return requestMaker(url,"get",{params,payload});
 }
+
+// Request status count of user
+export const fetchStatusCount = (params) => {
+    const url = "/request/statuscount/";
+    // const params = {};
+    const payload = {};
+    return requestMaker(url, "get", { params, payload });
+  };

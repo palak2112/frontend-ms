@@ -25,6 +25,7 @@ import {
 // Custom components
 import Card from "components/card/Card";
 // import Menu from "components/menu/MainMenu";
+import moment from "moment";
 
 // Assets
 import {
@@ -125,7 +126,9 @@ const { t } = useTranslation();
                 _hover={{
                   cursor: "pointer",
                 }}
-                onClick={() => history.push(`/admin/details/${row.values.rid}`)}
+                onClick={() =>
+                  history.push(`/admin/requestdetails/${row.values.rid}`)
+                }
               >
                 {row.cells.map((cell, index) => {
                   let data = "";
@@ -135,10 +138,10 @@ const { t } = useTranslation();
                         {t(cell.value)}
                       </Text>
                     );
-                  } else if (cell.column.Header === "U-ID") {
+                  } else if (cell.column.Header === "Last-Updated") {
                     data = (
                       <Text color={textColor} fontSize="sm" fontWeight="700">
-                        {t(cell.value)}
+                        {moment(new Date(cell.value)).format("LL")}
                       </Text>
                     );
                   } else if (cell.column.Header === "STATUS") {
@@ -219,4 +222,3 @@ const { t } = useTranslation();
     </Card>
   );
 }
-

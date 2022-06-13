@@ -16,10 +16,52 @@ import tableDataDevelopment from "views/admin/dataTables/variables/tableDataDeve
 import tableDataCheck from "views/admin/dataTables/variables/tableDataCheck.json";
 import tableDataColumns from "views/admin/dataTables/variables/tableDataColumns.json";
 import tableDataComplex from "views/admin/dataTables/variables/tableDataComplex.json";
-import React from "react";
+import React,{ useState, useEffect }  from "react";
+import { fetchAllRequests } from "../../../api/requestApi";
+
+const statusMapping = {
+  APPROVAL_PENDING: "Approval Pending",
+  PENDING_UPLOADS: "Pending Uploads",
+  UNDER_REVIEW: "Under Review",
+  COMPLETE: "Completed",
+  REJECTED: "Rejected",
+};
 
 export default function Settings() {
   // Chakra Color Mode
+  const [apiData, setApiData] = useState([]);
+
+  const fetchRequests = async () => {
+    const uid = JSON.parse(localStorage.getItem("user"))["uid"];
+    console.log(uid);
+    try {
+      const response = await fetchAllRequests({uid});
+      console.log(response.data.data);
+      setApiData(
+        response.data.data.map((elem) => {
+          console.log(elem);
+          return {
+            rid: elem.id,
+            uid: elem.user.uid,
+            name: elem.user.name,
+            status: statusMapping[elem.status],
+            type: elem.type,
+            theme: elem.theme,
+            updatedAt:elem.updatedAt
+          };
+        })
+      );
+
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(async () => {
+    fetchRequests();
+  }, []);
+
+
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       
@@ -38,7 +80,7 @@ export default function Settings() {
         /> */}
         <ComplexTable
           columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
+          tableData={apiData}
         />
       </SimpleGrid>
     </Box>

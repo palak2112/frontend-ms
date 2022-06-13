@@ -17,7 +17,9 @@ import Usa from "assets/img/dashboards/usa.png";
 // import MiniCalendar from "components/calendar/MiniCalendar";
 import MiniStatistics from "components/card/MiniStatistics";
 import IconBox from "components/icons/IconBox";
-import React,{useEffect} from "react";
+
+import React,{ useState, useEffect } from "react";
+
 import {
   MdAddTask,
   MdAttachMoney,
@@ -41,10 +43,23 @@ import {
 import tableDataCheck from "views/admin/default/variables/tableDataCheck.json";
 import tableDataComplex from "views/admin/default/variables/tableDataComplex.json";
 
+import { fetchAllRequests } from "../../../api/requestApi";
+import { fetchStatusCount } from "../../../api/userApi";
+
+
+const statusMapping = {
+  APPROVAL_PENDING: "Approval Pending",
+  PENDING_UPLOADS: "Pending Uploads",
+  UNDER_REVIEW: "Under Review",
+  COMPLETE: "Completed",
+  REJECTED: "Rejected",
+};
+
 export default function UserReports() {
   // Chakra Color Mode
   const brandColor = useColorModeValue("brand.500", "white");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+
   const { t } = useTranslation();
 
   // useEffect(() => {
@@ -52,6 +67,61 @@ export default function UserReports() {
   //   cur += "?lng=en";
   //   window.location.href = cur;
   // }, []);
+
+  
+  const [apiData, setApiData] = useState([]);
+  const [statusCount,setStatusCount] = useState();
+  const [totalRequest,setTotalRequest] = useState();
+
+
+  const fetchCount = async () => { 
+    const uid = JSON.parse(localStorage.getItem("user"))["uid"];
+    console.log(uid);
+    try {
+      const response = await fetchStatusCount({uid});
+      console.log(response.data);
+      setStatusCount(response.data.data);
+      setTotalRequest(response.data.data["COMPLETE"] + 
+      response.data.data["APPROVAL_PENDING"] +
+      response.data.data["PENDING_UPLOADS"] +
+      response.data.data["UNDER_REVIEW"]
+                      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const fetchRequests = async () => {
+    const uid = JSON.parse(localStorage.getItem("user"))["uid"];
+    console.log(uid);
+    try {
+      const response = await fetchAllRequests({uid});
+      console.log(response.data.data);
+      setApiData(
+        response.data.data.map((elem) => {
+          console.log(elem);
+          return {
+            rid: elem.id,
+            uid: elem.user.uid,
+            name: elem.user.name,
+            status: statusMapping[elem.status],
+            type: elem.type,
+            theme: elem.theme,
+            updatedAt:elem.updatedAt
+          };
+        })
+      );
+
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(async () => {
+    fetchRequests();
+    fetchCount();
+  }, []);
+
 
 
   return (
@@ -71,9 +141,10 @@ export default function UserReports() {
               }
             />
           }
-          name={t("Approved requests")}
-          // name={t("welcome")}
-          value='15'
+
+          name={t("Completed requests")}
+          value= {statusCount && statusCount["COMPLETE"]}
+
         />
         <MiniStatistics
           startContent={
@@ -86,8 +157,10 @@ export default function UserReports() {
               }
             />
           }
+
           name={t("Pending approval")}
-          value='5'
+          value={statusCount && statusCount["APPROVAL_PENDING"]}
+
         />
         {/* <MiniStatistics growth='+23%' name='Sales' value='$574.34' /> */}
         <MiniStatistics
@@ -118,8 +191,10 @@ export default function UserReports() {
               }
             />
           }
+
           name={t("Pending Upload")}
-          value='5'
+          value={statusCount && statusCount["PENDING_UPLOADS"]}
+
         />
         <MiniStatistics
           startContent={
@@ -133,7 +208,7 @@ export default function UserReports() {
             />
           }
           name={t("Under Review")}
-          value='154'
+          value={statusCount && statusCount["UNDER_REVIEW"]}
         />
         <MiniStatistics
           startContent={
@@ -147,7 +222,8 @@ export default function UserReports() {
             />
           }
           name={t("Total Requests")}
-          value='2935'
+          value={totalRequest}
+
         />
       </SimpleGrid>
 
@@ -165,7 +241,7 @@ export default function UserReports() {
       <SimpleGrid columns={{ base: 1, md: 2, xl: 0 }} gap='20px' mb='20px'>
         <ComplexTable
           columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
+          tableData={apiData}
         />
         {/* <SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap='20px'>
           <Tasks />

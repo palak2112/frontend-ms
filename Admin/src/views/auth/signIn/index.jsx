@@ -95,7 +95,7 @@ function SignIn() {
       >
         <Box me="auto">
           <Heading color={textColor} fontSize="36px" mb="10px">
-            Sign In
+            Admin Sign-In
           </Heading>
           <Text
             mb="36px"
@@ -104,7 +104,7 @@ function SignIn() {
             fontWeight="400"
             fontSize="md"
           >
-            Enter official St. Jude email and password to sign in!
+            Enter UID and password to sign in!
           </Text>
         </Box>
         <Flex
@@ -150,7 +150,7 @@ function SignIn() {
               color={textColor}
               mb="8px"
             >
-              Email
+             UID
             </FormLabel>
             <Input
               isRequired={true}
@@ -158,7 +158,7 @@ function SignIn() {
               fontSize="sm"
               ms={{ base: "0px", md: "0px" }}
               type="text"
-              placeholder="mail@simmmple.com"
+              placeholder="Enter UID"
               mb="24px"
               fontWeight="500"
               size="lg"
@@ -180,7 +180,7 @@ function SignIn() {
               <Input
                 isRequired={true}
                 fontSize="sm"
-                placeholder="Min. 8 characters"
+                placeholder="Enter password"
                 mb="24px"
                 size="lg"
                 type={show ? "text" : "password"}

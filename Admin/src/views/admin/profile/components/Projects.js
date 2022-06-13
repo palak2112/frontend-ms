@@ -9,8 +9,11 @@ import { Image, Box,Input,Center } from '@chakra-ui/react'
 import Card from "components/card/Card.js";
 import {React,useEffect,useState,useSelector} from "react";
 import Project from "views/admin/profile/components/Project";
-import { Heading ,Button} from '@chakra-ui/react'
+import { Heading ,Button,Icon,Flex} from '@chakra-ui/react'
 import {toast} from "react-toastify"
+import { MdUpload } from "react-icons/md";
+import Dropzone from "views/admin/profile/components/Dropzone";
+
 
 
 
@@ -22,7 +25,7 @@ export default function Projects({uploadFile,setUploadFile}) {
     "0px 18px 40px rgba(112, 144, 176, 0.12)",
     "unset"
   );
-   
+   const brandColor = useColorModeValue("brand.500", "white");
 
   const [previewImage,setPreviewImage] = useState("");
 
@@ -40,12 +43,17 @@ export default function Projects({uploadFile,setUploadFile}) {
   }  
   return (
     <Card mb={{ base: "0px", "2xl": "20px" }}>
-      
-      <Box boxSize='xs'>
-      <Image src={previewImage} alt='Upload an image' height='300px' width='500px' />
+      <Center>
+        {previewImage !== ""?
+      <Box boxSize='s' padding={"10px"}>
+      <Image src={previewImage} alt='Upload an image' height='300px' width='500px' borderRadius={"15px"} />
       </Box>
-        
-              
+      :
+      <Box boxSize='s'  padding={"130px 190px"}  borderRadius={"15px"} >
+     <b>Select an Image</b>
+      </Box>}
+      </Center>
+              <br></br>
       <Input type={"file"} placeholder={"Upload an image"} onChange = {(e) =>{
                 setUploadFile(e.target.files[0]);
               }}/>
