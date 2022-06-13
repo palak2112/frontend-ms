@@ -258,54 +258,54 @@ export default function Notifications(props) {
     window.location.reload();
   };
 
-  const handleNetworkChange = async () => {
-    let flag = false;
-    for (const [key, value] of Object.entries(localStorage)) {
-      console.log(`${key}: ${value}`);
-      if (key.startsWith("doc") && key.split("-")[1] == reqId) {
-        flag = true;
-        // Upload file to AWS
-        const blob = dataURItoBlob(localStorage.getItem(key));
-        const fd = new FormData();
-        // const xhr = new XMLHttpRequest();
+  // const handleNetworkChange = async () => {
+  //   let flag = false;
+  //   for (const [key, value] of Object.entries(localStorage)) {
+  //     console.log(`${key}: ${value}`);
+  //     if (key.startsWith("doc") && key.split("-")[1] == reqId) {
+  //       flag = true;
+  //       // Upload file to AWS
+  //       const blob = dataURItoBlob(localStorage.getItem(key));
+  //       const fd = new FormData();
+  //       // const xhr = new XMLHttpRequest();
 
-        fd.append("file", blob, blob.name);
+  //       fd.append("file", blob, blob.name);
 
-        const res = await documentsUpload(fd);
+  //       const res = await documentsUpload(fd);
 
-        const payload = {
-          data: {},
-        };
+  //       const payload = {
+  //         data: {},
+  //       };
 
-        for (const aws_key in awsUrls) {
-          if (aws_key === `doc-${reqId}-${key.split("-")[2]}`)
-            payload["data"][
-              Object.keys(data?.data?.data)[aws_key.split("-")[2]]
-            ] = res.data.data;
-          else
-            payload["data"][
-              Object.keys(data?.data?.data)[aws_key.split("-")[2]]
-            ] = awsUrls[aws_key];
-        }
+  //       for (const aws_key in awsUrls) {
+  //         if (aws_key === `doc-${reqId}-${key.split("-")[2]}`)
+  //           payload["data"][
+  //             Object.keys(data?.data?.data)[aws_key.split("-")[2]]
+  //           ] = res.data.data;
+  //         else
+  //           payload["data"][
+  //             Object.keys(data?.data?.data)[aws_key.split("-")[2]]
+  //           ] = awsUrls[aws_key];
+  //       }
 
-        console.log({ payload });
+  //       console.log({ payload });
 
-        const docDetail = await updateDocument(payload, data?.data?.id);
-        const awsUrlObject = {};
-        console.log(docDetail?.data?.data?.data);
-        for (const key of Object.keys(docDetail?.data?.data?.data)) {
-          const idx = Object.keys(docDetail?.data?.data?.data).indexOf(key);
-          awsUrlObject[`doc-${reqId}-${idx}`] =
-            docDetail?.data?.data?.data[key];
-        }
-        console.log(awsUrlObject);
-        setAwsUrls(awsUrlObject);
+  //       const docDetail = await updateDocument(payload, data?.data?.id);
+  //       const awsUrlObject = {};
+  //       console.log(docDetail?.data?.data?.data);
+  //       for (const key of Object.keys(docDetail?.data?.data?.data)) {
+  //         const idx = Object.keys(docDetail?.data?.data?.data).indexOf(key);
+  //         awsUrlObject[`doc-${reqId}-${idx}`] =
+  //           docDetail?.data?.data?.data[key];
+  //       }
+  //       console.log(awsUrlObject);
+  //       setAwsUrls(awsUrlObject);
 
-        if (res.status === 200) localStorage.removeItem(key);
-      }
-    }
-    if (flag) window.location.reload();
-  };
+  //       if (res.status === 200) localStorage.removeItem(key);
+  //     }
+  //   }
+  //   if (flag) window.location.reload();
+  // };
   return (
     <Card mb="20px" {...rest}>
       <TableContainer>
@@ -349,14 +349,14 @@ export default function Notifications(props) {
           Submit
         </Button>
       )}
-      <Offline
+      {/* <Offline
         onChange={async () => {
           console.log("CHANGE CONNECTION");
           await handleNetworkChange();
           // console.log("DONE");
           // window.location.reload();
         }}
-      ></Offline>
+      ></Offline> */}
       {/* <Flex align='center' w='100%' justify='space-between' mb='30px'>
         <Text
           color={textColorPrimary}
