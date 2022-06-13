@@ -48,11 +48,8 @@ export default function Overview() {
         gridArea="1 / 2 / 2 / 2"
         banner={banner}
         avatar={avatar}
-        name="Adela Parkson"
-        job="Product Designer"
-        posts="17"
-        followers="9.7k"
-        following="274"
+        name={apiData?.data?.name}
+        posterUrl = {apiData?.data?.posterUrl}
       />
       <br></br>
       <General

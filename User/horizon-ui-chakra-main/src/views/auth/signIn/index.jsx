@@ -105,7 +105,7 @@ function SignIn() {
             fontWeight="400"
             fontSize="md"
           >
-            Enter official St. Jude email and password to sign in!
+            Enter UID and password to sign in!
           </Text>
         </Box>
         <Flex
@@ -158,7 +158,7 @@ function SignIn() {
               variant="auth"
               fontSize="sm"
               ms={{ base: "0px", md: "0px" }}
-              type="email"
+              type="text"
               placeholder="Enter UID"
               mb="24px"
               fontWeight="500"
@@ -179,7 +179,7 @@ function SignIn() {
               <Input
                 isRequired={true}
                 fontSize="sm"
-                placeholder="Min. 8 characters"
+                placeholder="Enter password"
                 mb="24px"
                 size="lg"
                 type={show ? "text" : "password"}
