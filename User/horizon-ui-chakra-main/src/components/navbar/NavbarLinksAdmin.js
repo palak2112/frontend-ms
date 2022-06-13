@@ -47,8 +47,7 @@ export default function HeaderLinks(props) {
   const borderButton = useColorModeValue("secondaryGray.500", "whiteAlpha.200");
   const history = useHistory();
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.clear();
     history.replace("/auth/sign-in");
   };
   return (

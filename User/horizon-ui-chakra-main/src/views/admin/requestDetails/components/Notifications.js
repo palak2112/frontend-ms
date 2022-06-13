@@ -21,31 +21,92 @@ import {
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
-import moment from "moment";
 import { useState } from "react";
-import { useId } from "react";
 import { useEffect } from "react";
 
+import { documentsUpload } from "api/uploadApi";
+import { updateDocument } from "api/documentApi";
+import { updateRequest } from "api/requestApi";
+import { useHistory } from "react-router-dom";
+
+function dataURItoBlob(dataURI) {
+  // convert base64 to raw binary data held in a string
+  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  var byteString = atob(dataURI.split(",")[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+
+  // write the bytes of the string to an ArrayBuffer
+  var ab = new ArrayBuffer(byteString.length);
+  var ia = new Uint8Array(ab);
+  for (var i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  //Old Code
+  //write the ArrayBuffer to a blob, and you're done
+  //var bb = new BlobBuilder();
+  //bb.append(ab);
+  //return bb.getBlob(mimeString);
+
+  //New Code
+  return new Blob([ab], { type: mimeString });
+}
+
 const DocListItem = (props) => {
-  const { name, status } = props;
-  const [doc, setDoc] = useState({ file: {}, name: "" });
+  const { name, status, reqId, reqStatus, docNumber, awsUrls, setAwsUrlsCB } =
+    props;
+  const [uploadFile, setUploadFile] = useState("");
+  const [uploadStatus, setUploadStatus] = useState(status !== "");
 
-  useEffect(() => {
-    console.log({ doc });
-  }, [doc]);
+  useEffect(async () => {
+    if (uploadFile === "") return;
 
+    // Upload file as Data URL to Localstorage
+    const reader = new FileReader();
+    reader.readAsDataURL(uploadFile);
+    reader.onload = (e) => {
+      // console.log(reader.result);
+      localStorage.setItem(`doc-${reqId}-${docNumber}`, reader.result);
+      console.log("doc uploaded", uploadFile);
+    };
+  }, [uploadFile]);
+
+  const uploadAWS = async () => {
+    // Upload file to AWS
+    const blob = dataURItoBlob(
+      localStorage.getItem(`doc-${reqId}-${docNumber}`)
+    );
+    const fd = new FormData();
+    // const xhr = new XMLHttpRequest();
+
+    fd.append("file", blob, blob.name);
+
+    const res = await documentsUpload(fd);
+
+    if (res.status === 200) {
+      localStorage.removeItem(`doc-${reqId}-${docNumber}`);
+      console.log({ ...awsUrls, [`doc-${reqId}-${docNumber}`]: res.data.data });
+      setAwsUrlsCB({
+        ...awsUrls,
+        [`doc-${reqId}-${docNumber}`]: res.data.data,
+      });
+    }
+
+    setUploadStatus(true);
+  };
   return (
     <Tr>
       <Td>{name}</Td>
-      <Td>{status === "" ? "Not Uploaded" : "Uploaded"}</Td>
+      <Td>{uploadStatus === false ? "Not Uploaded" : "Uploaded"}</Td>
       {/* <Td>
     {" "}
     {moment(new Date(data?.data?.updatedAt)).format("L")}{" "}
   </Td> */}
 
-      {status === "" ? (
+      {reqStatus === "PENDING_UPLOADS" ? (
         <Flex gap="20px">
-          {/* <FormControl w="70%"> */}
           <Input
             w="70%"
             required={true}
@@ -53,20 +114,10 @@ const DocListItem = (props) => {
             type="file"
             // value={doc.name}
             onChange={(e) => {
-              // console.log(docs);
-              // const temp = Number(idx);
-              setDoc({
-                file: e.target.files[0],
-                name: e.target.files[0]["name"],
-              });
-              console.log(e.target.files[0]);
-              console.log(doc);
-              // console.log(docs[idx]);
+              setUploadFile(e.target.files[0]);
             }}
           />
-          {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
-          {/* </FormControl> */}
-          <Button>Upload</Button>
+          <Button onClick={uploadAWS}>Upload</Button>
         </Flex>
       ) : (
         <Td color="blue">
@@ -90,18 +141,41 @@ const DocListItem = (props) => {
 };
 
 export default function Notifications(props) {
-  const { data, ...rest } = props;
+  const { data, reqId, reqStatus, apiData, setApiDataCB, ...rest } = props;
+  const history = useHistory();
   console.log({ data });
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
 
-  console.log(data.data.data);
+  console.log(data?.data?.data);
   const initObject = {};
-  Object.keys(data.data.data).forEach((key, idx) => {
-    initObject[key] = data.data.data[key];
+  Object.keys(data?.data?.data).forEach((key, idx) => {
+    initObject[`doc-${reqId}-${idx}`] = data?.data?.data[key];
   });
   console.log(initObject);
-  const [docs, setDocs] = useState(initObject);
+  const [awsUrls, setAwsUrls] = useState(initObject);
+
+  const handleSubmit = async () => {
+    // updateDocument
+    const payload = {
+      data: {},
+    };
+    Object.keys(data?.data?.data).forEach((key, idx) => {
+      payload["data"][key] = awsUrls[`doc-${reqId}-${idx}`];
+    });
+
+    await updateDocument(payload, data.data.id);
+    console.log("Documents updated");
+
+    await updateRequest({ status: "UNDER_REVIEW" }, reqId);
+    // setApiDataCB({
+    //   ...apiData,
+    //   requestData: { ...apiData.requestData, status: "UNDER_REVIEW" },
+    // });
+    // history.push(`/admin/requestdetails/${reqId}`);
+    window.location.reload();
+  };
+
   return (
     <Card mb="20px" {...rest}>
       <TableContainer>
@@ -118,12 +192,31 @@ export default function Notifications(props) {
             {data?.data?.data &&
               Object.keys(data?.data?.data).map((key, idx) => {
                 return (
-                  <DocListItem name={key} status={data?.data?.data[key]} />
+                  <DocListItem
+                    name={key}
+                    status={data?.data?.data[key]}
+                    docNumber={idx}
+                    reqId={reqId}
+                    reqStatus={reqStatus}
+                    awsUrls={awsUrls}
+                    setAwsUrlsCB={setAwsUrls}
+                  />
                 );
               })}
           </Tbody>
         </Table>
       </TableContainer>
+      {reqStatus === "PENDING_UPLOADS" && (
+        <Button
+          disabled={
+            Object.keys(awsUrls).filter((key) => awsUrls[key].length === 0)
+              .length > 0
+          }
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+      )}
       {/* <Flex align='center' w='100%' justify='space-between' mb='30px'>
         <Text
           color={textColorPrimary}

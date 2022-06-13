@@ -159,6 +159,10 @@ export default function Overview(props) {
               "2xl": "1 / 3 / 2 / 4",
             }}
             data={apiData.documentData}
+            reqId={rid}
+            reqStatus={apiData.requestData.status}
+            apiData={apiData}
+            setApiDataCB={setApiData}
           />
         ) : (
           <div></div>

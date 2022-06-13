@@ -200,7 +200,7 @@ import {
 // Custom components
 import Card from "components/card/Card";
 // import Menu from "components/menu/MainMenu";
-import moment from "moment"
+import moment from "moment";
 
 // Assets
 import {
@@ -299,7 +299,9 @@ export default function ColumnsTable(props) {
                 _hover={{
                   cursor: "pointer",
                 }}
-                onClick={() => history.push(`/admin/details/${row.values.rid}`)}
+                onClick={() =>
+                  history.push(`/admin/requestdetails/${row.values.rid}`)
+                }
               >
                 {row.cells.map((cell, index) => {
                   let data = "";
@@ -393,4 +395,3 @@ export default function ColumnsTable(props) {
     </Card>
   );
 }
-
