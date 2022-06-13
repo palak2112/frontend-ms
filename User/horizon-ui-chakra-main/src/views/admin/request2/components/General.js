@@ -140,7 +140,7 @@ export default function GeneralInformation({
             ).map((theme_key, idx) => (
               <option key={`type-${idx}`} value={theme_key}>
                 {selectedType === "FINANCIAL"
-                  ? t("Financial")
+                  ? FINANCIAL_THEMES[theme_key]
                   : NON_FINANCIAL_THEMES[theme_key]}
               </option>
             ))}

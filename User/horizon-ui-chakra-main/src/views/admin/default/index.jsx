@@ -17,7 +17,7 @@ import Usa from "assets/img/dashboards/usa.png";
 // import MiniCalendar from "components/calendar/MiniCalendar";
 import MiniStatistics from "components/card/MiniStatistics";
 import IconBox from "components/icons/IconBox";
-import React from "react";
+import React,{useEffect} from "react";
 import {
   MdAddTask,
   MdAttachMoney,
@@ -46,6 +46,14 @@ export default function UserReports() {
   const brandColor = useColorModeValue("brand.500", "white");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
   const { t } = useTranslation();
+
+  // useEffect(() => {
+  //   var cur = window.location.href;
+  //   cur += "?lng=en";
+  //   window.location.href = cur;
+  // }, []);
+
+
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       <SimpleGrid

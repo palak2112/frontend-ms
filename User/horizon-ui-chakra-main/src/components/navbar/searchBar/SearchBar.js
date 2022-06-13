@@ -85,8 +85,10 @@ export function SearchBar(props) {
         fontWeight='500'
         _placeholder={{ color: "gray.400", fontSize: "14px" }}
         borderRadius={borderRadius ? borderRadius : "30px"}>
-        <option value="en" selected >English </option>
+        <option value="xxxx" >Select language </option>
+        <option value="en" >English </option>
         <option value="hi"> हिन्दी </option>
+        
         <option value="kn"> ಕನ್ನಡ </option>
         <option value="ta"> தமிழ் </option>
         <option value="mr"> मराठी </option>
