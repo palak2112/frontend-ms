@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import {
   Flex,
   Table,
@@ -22,6 +24,7 @@ import Card from "components/card/Card";
 import Menu from "components/menu/MainMenu";
 export default function ColumnsTable(props) {
   const { columnsData, tableData } = props;
+  const { t } = useTranslation();
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -60,7 +63,7 @@ export default function ColumnsTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          4-Column Table
+          {t("4-Column Table")}
         </Text>
         <Menu />
       </Flex>

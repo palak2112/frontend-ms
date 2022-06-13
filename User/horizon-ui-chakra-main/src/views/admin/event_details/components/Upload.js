@@ -1,4 +1,6 @@
 // Chakra imports
+import { useTranslation } from "react-i18next";
+
 import {
   Box,
   Button,
@@ -15,6 +17,8 @@ import { MdUpload } from "react-icons/md";
 import Dropzone from "views/admin/profile/components/Dropzone";
 
 export default function Upload(props) {
+  const {t} = useTranslation();
+
   const { used, total, ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -33,11 +37,11 @@ export default function Upload(props) {
               <Icon as={MdUpload} w='80px' h='80px' color={brandColor} />
               <Flex justify='center' mx='auto' mb='12px'>
                 <Text fontSize='xl' fontWeight='700' color={brandColor}>
-                  Upload Files
+                  {t("Upload Files")}
                 </Text>
               </Flex>
               <Text fontSize='sm' fontWeight='500' color='secondaryGray.500'>
-                PNG, JPG and GIF files are allowed
+                {t("PNG, JPG and GIF files are allowed")}
               </Text>
             </Box>
           }
@@ -49,7 +53,7 @@ export default function Upload(props) {
             textAlign='start'
             fontSize='2xl'
             mt={{ base: "20px", "2xl": "50px" }}>
-            Complete your profile
+            {t("Complete your profile")}
           </Text>
           <Text
             color={textColorSecondary}
@@ -57,8 +61,7 @@ export default function Upload(props) {
             my={{ base: "auto", "2xl": "10px" }}
             mx='auto'
             textAlign='start'>
-            Stay on the pulse of distributed projects with an anline whiteboard
-            to plan, coordinate and discuss
+            {t("Stay on the pulse of distributed projects with an anline whiteboard to plan, coordinate and discuss")}
           </Text>
           <Flex w='100%'>
             <Button
@@ -69,7 +72,7 @@ export default function Upload(props) {
               mt={{ base: "20px", "2xl": "auto" }}
               variant='brand'
               fontWeight='500'>
-              Publish now
+              {t("Publish now")}
             </Button>
           </Flex>
         </Flex>

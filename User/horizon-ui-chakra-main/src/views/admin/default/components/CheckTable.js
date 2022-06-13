@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   Flex,
   Table,
@@ -23,6 +24,7 @@ import Card from "components/card/Card";
 import Menu from "components/menu/MainMenu";
 export default function CheckTable(props) {
   const { columnsData, tableData } = props;
+  const {t} = useTranslation();
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -61,7 +63,7 @@ export default function CheckTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Check Table
+          {t("Check Table")}
         </Text>
         <Menu />
       </Flex>
@@ -103,7 +105,7 @@ export default function CheckTable(props) {
                           me='10px'
                         />
                         <Text color={textColor} fontSize='sm' fontWeight='700'>
-                          {cell.value[0]}
+                          {t(cell.value[0])}
                         </Text>
                       </Flex>
                     );
@@ -122,13 +124,13 @@ export default function CheckTable(props) {
                   // } else if (cell.column.Header === "QUANTITY") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
-                        {cell.value}
+                        {t(cell.value)}
                       </Text>
                     );
                   } else if (cell.column.Header === "DATE") {
                     data = (
                       <Text color={textColor} fontSize='sm' fontWeight='700'>
-                        {cell.value}
+                        {t(cell.value)}
                       </Text>
                     );
                   }
@@ -139,7 +141,7 @@ export default function CheckTable(props) {
                       fontSize={{ sm: "14px" }}
                       minW={{ sm: "150px", md: "200px", lg: "auto" }}
                       borderColor='transparent'>
-                      {data}
+                      {t(data)}
                     </Td>
                   );
                 })}

@@ -1,4 +1,5 @@
 import React from "react";
+// import { useTranslation } from "react-i18next";
 
 import { Icon } from "@chakra-ui/react";
 import {
@@ -24,7 +25,7 @@ import event_details from "views/admin/event_details";
 
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
-
+// const {t} = useTranslation();
 const routes = [
   {
     name: "Dashboard",

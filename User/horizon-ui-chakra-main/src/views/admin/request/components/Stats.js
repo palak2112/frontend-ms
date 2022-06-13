@@ -7,12 +7,15 @@ import {
   StatLabel
 } from "@chakra-ui/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 
 export default function Stats(props) {
+  const {t} = useTranslation();
   return (
     <Stat mt={5}>
       <Heading my={2} as="h4" fontSize="20px">
-        Submitted Result
+        {t("Submitted Result")}
       </Heading>
       <Stack
         p={4}
@@ -22,10 +25,10 @@ export default function Stats(props) {
         align="flex-start"
       >
         <HStack>
-          <StatLabel>Name: {props.Firstname}</StatLabel>
+          <StatLabel> {t("Name:")} {props.Firstname}</StatLabel>
           <StatLabel>{props.Lastname}</StatLabel>
         </HStack>
-        <StatHelpText>Password: {props.Password}</StatHelpText>
+        <StatHelpText>{t("Password:")} {props.Password}</StatHelpText>
       </Stack>
     </Stat>
   );

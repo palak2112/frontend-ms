@@ -1,4 +1,6 @@
 // Chakra imports
+import { useTranslation } from "react-i18next";
+
 import {
   Box,
   Flex,
@@ -15,6 +17,8 @@ import React from "react";
 import { MdEdit } from "react-icons/md";
 
 export default function Project(props) {
+  const {t} = useTranslation();
+
   const { title, ranking, link, image, ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -38,9 +42,9 @@ export default function Project(props) {
             color={textColorSecondary}
             fontSize='sm'
             me='4px'>
-            Project #{ranking} •{" "}
+            {t("Project")} #{ranking} •{" "}
             <Link fontWeight='500' color={brandColor} href={link} fontSize='sm'>
-              See project details
+              {t("See project details")}
             </Link>
           </Text>
         </Box>

@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import {
   Flex,
   Table,
@@ -22,6 +24,8 @@ import {
 import Card from "components/card/Card";
 import Menu from "components/menu/MainMenu";
 export default function CheckTable(props) {
+  const {t} = useTranslation();
+
   const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -61,7 +65,7 @@ export default function CheckTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Check Table
+          {t("Check Table")}
         </Text>
         <Menu />
       </Flex>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import { useTranslation } from "react-i18next";
+
 
 export class Success extends Component {
   continue = e => {
@@ -16,6 +18,8 @@ export class Success extends Component {
   };
 
   render() {
+    const {t} = useTranslation();
+
     return (
       <MuiThemeProvider>
         <>
@@ -25,8 +29,8 @@ export class Success extends Component {
             maxWidth='sm'
           >
             <AppBar title="Success" />
-            <h1>Thank You For Your Submission</h1>
-            <p>You will get an email with further instructions.</p>
+            <h1>{t("Thank You For Your Submission")}</h1>
+            <p>{t("You will get an email with further instructions.")}</p>
           </Dialog>
         </>
       </MuiThemeProvider>

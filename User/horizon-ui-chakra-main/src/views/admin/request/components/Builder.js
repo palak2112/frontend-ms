@@ -3,8 +3,12 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import AlertPop from "./AlertPop";
 import Stats from "./Stats";
+import { useTranslation } from "react-i18next";
+
 
 export default function Builder() {
+  const {t} = useTranslation();
+
   const toast = useToast();
   const [data, setData] = useState();
 
@@ -68,7 +72,7 @@ export default function Builder() {
             variant="ghost"
             type="submit"
           >
-            Submit
+            {t("Submit")}
           </Button>
         </VStack>
       </form>

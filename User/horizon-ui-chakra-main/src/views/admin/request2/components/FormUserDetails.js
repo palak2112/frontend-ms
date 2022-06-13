@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useTranslation } from "react-i18next";
 
 export class FormUserDetails extends Component {
   continue = e => {
@@ -12,6 +13,8 @@ export class FormUserDetails extends Component {
   };
 
   render() {
+    const {t} = useTranslation();
+
     const { values, handleChange } = this.props;
     //   const style = {
     //     background : '#f58220',
@@ -66,7 +69,8 @@ export class FormUserDetails extends Component {
               style={{fontFamily: 'sans-serif', backgroundColor: '#f58220', borderColor: 'orange', color: 'white', fontWeight: 'bold' }}
               variant="contained"
               onClick={this.continue}
-            >Continue</Button>
+            >
+              {t("Continue")} </Button>
           </Dialog>
         </>
       </MuiThemeProvider>

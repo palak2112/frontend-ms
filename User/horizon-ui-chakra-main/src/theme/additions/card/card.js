@@ -1,3 +1,4 @@
+
 import { mode } from "@chakra-ui/theme-tools";
 const Card = {
   baseStyle: (props) => ({
@@ -15,7 +16,10 @@ const Card = {
 };
 
 export const CardComponent = {
+  
   components: {
     Card,
   },
 };
+
+

@@ -1,10 +1,13 @@
 /* eslint-disable */
+import "../../../i18n.js";
+import { useTranslation } from "react-i18next";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // chakra imports
 import { Box, Flex, HStack, Text, useColorModeValue } from "@chakra-ui/react";
 
 export function SidebarLinks(props) {
+  const {t} = useTranslation();
   //   Chakra color mode
   let location = useLocation();
   let activeColor = useColorModeValue("gray.700", "white");
