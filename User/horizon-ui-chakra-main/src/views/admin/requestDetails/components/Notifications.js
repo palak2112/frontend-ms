@@ -57,8 +57,17 @@ function dataURItoBlob(dataURI) {
 }
 
 const DocListItem = (props) => {
-  const { name, status, reqId, reqStatus, docNumber, awsUrls, setAwsUrlsCB } =
-    props;
+  const {
+    name,
+    status,
+    reqId,
+    reqStatus,
+    docNumber,
+    awsUrls,
+    setAwsUrlsCB,
+    dbDocs,
+    documentModelId,
+  } = props;
   console.log(`doc-${reqId}-${docNumber}`);
   console.log("AWS", awsUrls);
   const [uploadFile, setUploadFile] = useState("");
@@ -88,6 +97,21 @@ const DocListItem = (props) => {
     fd.append("file", blob, blob.name);
 
     const res = await documentsUpload(fd);
+
+    const payload = {
+      data: {},
+    };
+
+    for (const key in awsUrls) {
+      if (key === `doc-${reqId}-${docNumber}`)
+        payload["data"][Object.keys(dbDocs)[key.split("-")[2]]] = res.data.data;
+      else
+        payload["data"][Object.keys(dbDocs)[key.split("-")[2]]] = awsUrls[key];
+    }
+
+    console.log({ payload });
+
+    await updateDocument(payload, documentModelId);
 
     if (res.status === 200) {
       localStorage.removeItem(`doc-${reqId}-${docNumber}`);
@@ -235,9 +259,11 @@ export default function Notifications(props) {
   };
 
   const handleNetworkChange = async () => {
+    let flag = false;
     for (const [key, value] of Object.entries(localStorage)) {
       console.log(`${key}: ${value}`);
       if (key.startsWith("doc") && key.split("-")[1] == reqId) {
+        flag = true;
         // Upload file to AWS
         const blob = dataURItoBlob(localStorage.getItem(key));
         const fd = new FormData();
@@ -247,16 +273,38 @@ export default function Notifications(props) {
 
         const res = await documentsUpload(fd);
 
-        if (res.status === 200) {
-          localStorage.removeItem(key);
-          console.log({ ...awsUrls, [key]: res.data.data });
-          setAwsUrls({
-            ...awsUrls,
-            [key]: res.data.data,
-          });
+        const payload = {
+          data: {},
+        };
+
+        for (const aws_key in awsUrls) {
+          if (aws_key === `doc-${reqId}-${key.split("-")[2]}`)
+            payload["data"][
+              Object.keys(data?.data?.data)[aws_key.split("-")[2]]
+            ] = res.data.data;
+          else
+            payload["data"][
+              Object.keys(data?.data?.data)[aws_key.split("-")[2]]
+            ] = awsUrls[aws_key];
         }
+
+        console.log({ payload });
+
+        const docDetail = await updateDocument(payload, data?.data?.id);
+        const awsUrlObject = {};
+        console.log(docDetail?.data?.data?.data);
+        for (const key of Object.keys(docDetail?.data?.data?.data)) {
+          const idx = Object.keys(docDetail?.data?.data?.data).indexOf(key);
+          awsUrlObject[`doc-${reqId}-${idx}`] =
+            docDetail?.data?.data?.data[key];
+        }
+        console.log(awsUrlObject);
+        setAwsUrls(awsUrlObject);
+
+        if (res.status === 200) localStorage.removeItem(key);
       }
     }
+    if (flag) window.location.reload();
   };
   return (
     <Card mb="20px" {...rest}>
@@ -282,6 +330,8 @@ export default function Notifications(props) {
                     reqStatus={reqStatus}
                     awsUrls={awsUrls}
                     setAwsUrlsCB={setAwsUrls}
+                    dbDocs={data?.data?.data}
+                    documentModelId={data?.data?.id}
                   />
                 );
               })}
@@ -299,7 +349,14 @@ export default function Notifications(props) {
           Submit
         </Button>
       )}
-      <Offline onChange={handleNetworkChange}></Offline>
+      <Offline
+        onChange={async () => {
+          console.log("CHANGE CONNECTION");
+          await handleNetworkChange();
+          // console.log("DONE");
+          // window.location.reload();
+        }}
+      ></Offline>
       {/* <Flex align='center' w='100%' justify='space-between' mb='30px'>
         <Text
           color={textColorPrimary}
