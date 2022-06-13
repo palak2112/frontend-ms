@@ -210,7 +210,7 @@ const { t } = useTranslation();
                       minW={{ sm: "150px", md: "200px", lg: "auto" }}
                       borderColor="transparent"
                     >
-                      {t(data)}
+                      {data}
                     </Td>
                   );
                 })}
